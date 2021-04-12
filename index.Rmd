@@ -17,39 +17,8 @@ description: Everything you need to know for your successful TechAcademy Data Sc
 site: bookdown::bookdown_site
 ---
 
-```{r global_options, include=FALSE}
-# knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
-#                       echo=FALSE, warning=FALSE, message=FALSE)
-knitr::opts_chunk$set(fig.width=12, fig.height=8,
-                      warning=FALSE, message=FALSE, comment=">")
-#echo=FALSE,
-```
-
-```{r setup, include=FALSE}
-# sets the working directory to parent folder
-#knitr::opts_knit$set(root.dir = normalizePath(".."))
-#knitr::opts_knit$get("root.dir")
-#setwd("..") only do if you run code without knitting
-Sys.setlocale("LC_TIME", "English")
-```
-
-\clearpage
-
-\addtolength{\headheight}{17.82275pt}
-\rhead{\includegraphics[height=0.5cm]{plots/TA_logo.png}}
-
-\fancyfoot{}
-\fancyfoot[R]{\thepage}
-\addtolength{\headheight}{17.82275pt}
-
-\fancyfoot[L]{Data Science Project Guide | Airbnb | \copyright\ 2020, TechAcademy e.V.}
- 
-\renewcommand{\headrulewidth}{0.25pt}
-\renewcommand{\footrulewidth}{0.25pt}
 
 
-\tableofcontents
-\clearpage
 
 
 # Welcome! 

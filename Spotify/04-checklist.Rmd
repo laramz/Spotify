@@ -1,0 +1,87 @@
+\newpage
+# Excercise Checklist
+
+This checklist should help you keeping track of your exercises. Remember that you have to hand in satisfactory solutions to at least two thirds of the exercises. If you're part of the beginner track this refers to two thirds of part A (EDA) only. If you're part of the advanced track, you have to hand in at least two thirds of both individual parts A and B. Hence, you cannot hand in 100 percent of the first part and only 50 percent of the second one. You'll need more than 66% in each one for a certificate. After all, you're not really that advanced if you only did half of it, right?
+
+**Part A: Exploratory Data Analysis (Beginners + Advanced)**
+
+
+1. Visualize the available apartments (calendar dataset):
+
+
+    a. Transform t/f to boolean values True/False
+
+
+    b. Aggregate data after dates
+
+
+    c. Plot available apartments over time
+
+
+2. Visualize the listings dataset
+
+
+    a. Clean and transform the `price` and `cleaning_fee` columns to numeric values
+
+
+    b. Compute mean and standard deviation of apartment prices for each neighborhood
+
+
+    c. Visualize the price distribution for the most and least expensive district
+
+
+    d. Visualize if `cleaning_fee` was used to hide costs
+
+
+3. Merging of `listings` and `review` data set
+
+
+    a. Aggregate reviews by `ID`
+
+
+    b. Merge `listings` and aggregated reviews data
+
+
+    c. Filter and plot amount of apartments in each district
+
+
+4. Visualize apartments on map
+
+
+    a. Draw a circle for every available apartment on map
+
+
+    b. Colorize each circle according to its districts
+
+
+    c. Draw a 2D-density plot
+
+
+**Part B: Price Prediction Using Statistical Methods ((motivated) Beginners + Advanced)**
+
+1. Visualize feature correlations in a correlation matrix/heatmap
+
+
+2. Regression
+
+
+    a. Simple regression model using one variable
+
+
+    b. Improve your model using more features
+
+
+3. Test your model
+
+
+    a. Use test data set to predict prices of the apartments
+
+
+    b. Compare your predictions with the true values
+
+
+    c. Train a new model using a more advanced method, send us your model and the predictions of your best model
+
+
+
+

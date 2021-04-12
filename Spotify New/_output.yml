@@ -5,10 +5,11 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Spotify Data Science Project</a></li>
       after: |
-        <li><a href="https://tech-academy.io/" target="blank">&copy 2020 TechAcademy e.V.</a></li>
+        <li><a href="https://tech-academy.io/" target="blank">&copy 2021 TechAcademy e.V.</a></li>
     download: ["pdf"]
-
+    
 bookdown::pdf_book:
+  toc: no
   includes:
     in_header: preamble.tex
   latex_engine: xelatex

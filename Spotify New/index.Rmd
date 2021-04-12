@@ -1,21 +1,30 @@
 --- 
-title: 'Data Science Project Guide: Airbnb'
+title: 'Data Science Project Guide: Spotify'
 author: "TechAcademy e.V."
-date: "Winter Term 2020/21"
-output: pdf_document
+date: "Summer Term 2021"
 geometry: top=0.5in, bottom=1.5in, left=1in, right=1in, a4paper
 fontsize: 11pt
 fontfamily: mathpazo
+site: bookdown::bookdown_site
+documentclass: book
 bibliography:
 - book.bib
 - packages.bib
 biblio-style: apalike
-link-citations: yes
 urlcolor: blue
-description: Everything you need to know for your successful TechAcademy Data Science
-  Project
-site: bookdown::bookdown_site
+link-citations: yes
+description: Everything you need to know for your successful TechAcademy Data Science Project
 ---
+
+
+```{r eval=FALSE, include=FALSE}
+install.packages("bookdown")
+install.packages("tinytex")
+library(tinytex)
+# or the development version
+# devtools::install_github("rstudio/bookdown")
+```
+
 
 ```{r global_options, include=FALSE}
 # knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
@@ -25,12 +34,11 @@ knitr::opts_chunk$set(fig.width=12, fig.height=8,
 #echo=FALSE,
 ```
 
-```{r setup, include=FALSE}
-# sets the working directory to parent folder
-#knitr::opts_knit$set(root.dir = normalizePath(".."))
-#knitr::opts_knit$get("root.dir")
-#setwd("..") only do if you run code without knitting
-Sys.setlocale("LC_TIME", "English")
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
 ```
 
 \clearpage
@@ -42,7 +50,7 @@ Sys.setlocale("LC_TIME", "English")
 \fancyfoot[R]{\thepage}
 \addtolength{\headheight}{17.82275pt}
 
-\fancyfoot[L]{Data Science Project Guide | Airbnb | \copyright\ 2020, TechAcademy e.V.}
+\fancyfoot[L]{Data Science Project Guide | Spotify | \copyright\ 2021, TechAcademy e.V.}
  
 \renewcommand{\headrulewidth}{0.25pt}
 \renewcommand{\footrulewidth}{0.25pt}
@@ -225,6 +233,7 @@ You can find the exact project tasks together with further explanations and hint
 
 To receive the certificate, it is essential that you have solved at least two thirds of the “Exploratory Data Analysis” part of the project. For the advanced participants, the entire "Price Prediction -- The Application of Statistical Models" part is added. In addition, two thirds of the respective curriculum on DataCamp must be completed. You can find more detailed information on this in the "Curriculum" section of the respective programming language above.
 	
+
 
 
 
