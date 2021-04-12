@@ -67,27 +67,6 @@ The column indicating if an apartment is available or not contains two types of 
 ::::
 
 
-
-
-```{r, include=FALSE}
-# Preliminaries
-library(tidyverse)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(maps)
-library(countrycode)
-library(leaflet)
-library(geojsonio)
-library(viridis)
-library(magick) # for including a .png in plots
-TA_logo <- image_read("plots/TA_logo.png")
-library(gghighlight)
-library(GGally)
-library(ggrepel)
-```
-
-
 Our goal now is to show the number of Airbnb apartments that are available over the next year in a simple line plot. This is still not possible, however, since there currently is an entry for each apartment for each of the upcoming 365 days and another related variable that shows us whether the apartment is available or not on each of those days. The transformed data set should summarize this information and should only have one entry for each day that tells us the aggregated number of available Airbnbs in Berlin.
 
 

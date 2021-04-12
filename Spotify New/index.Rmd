@@ -5,6 +5,7 @@ date: "Summer Term 2021"
 geometry: top=0.5in, bottom=1.5in, left=1in, right=1in, a4paper
 fontsize: 11pt
 fontfamily: mathpazo
+output: pdf_document
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:
