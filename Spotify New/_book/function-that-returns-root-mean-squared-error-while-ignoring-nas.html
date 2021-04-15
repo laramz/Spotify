@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Data Science Project Guide: Spotify</title>
+  <title>5 Function that returns Root Mean Squared Error while ignoring NAs | Data Science Project Guide: Spotify</title>
   <meta name="description" content="Everything you need to know for your successful TechAcademy Data Science Project" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Science Project Guide: Spotify" />
+  <meta property="og:title" content="5 Function that returns Root Mean Squared Error while ignoring NAs | Data Science Project Guide: Spotify" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Science Project Guide: Spotify" />
+  <meta name="twitter:title" content="5 Function that returns Root Mean Squared Error while ignoring NAs | Data Science Project Guide: Spotify" />
   
   <meta name="twitter:description" content="Everything you need to know for your successful TechAcademy Data Science Project" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="whats-data-science-and-how-do-i-do-it.html"/>
+<link rel="prev" href="exploratory-data-analysis.html"/>
+<link rel="next" href="excercise-checklist.html"/>
 <script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -119,23 +119,6 @@
 <li class="chapter" data-level="4.3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#most-productive-artists"><i class="fa fa-check"></i><b>4.3.1</b> Most Productive Artists</a></li>
 <li class="chapter" data-level="4.3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#charts"><i class="fa fa-check"></i><b>4.3.2</b> Charts</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#compare-artists-based-on-their-songs"><i class="fa fa-check"></i><b>4.4</b> Compare Artists Based on their Songs</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#pairplot-of-different-artists"><i class="fa fa-check"></i><b>4.4.1</b> Pairplot of different artists</a></li>
-<li class="chapter" data-level="4.4.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#discover-new-visualization-methods"><i class="fa fa-check"></i><b>4.4.2</b> Discover New Visualization Methods</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#analyse-personal-spotify-data"><i class="fa fa-check"></i><b>4.5</b> Analyse Personal Spotify Data</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#generate-bar-plot-with-top-10-artists"><i class="fa fa-check"></i><b>4.5.1</b> Generate Bar Plot with Top 10 artists</a></li>
-<li class="chapter" data-level="4.5.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#visualize-your-streaming-behavior"><i class="fa fa-check"></i><b>4.5.2</b> Visualize your Streaming Behavior</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="price-prediction-application-of-statistical-methods.html"><a href="price-prediction-application-of-statistical-methods.html"><i class="fa fa-check"></i><b>5</b> Price Prediction – Application of Statistical Methods</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="price-prediction-application-of-statistical-methods.html"><a href="price-prediction-application-of-statistical-methods.html#examine-the-correlation-between-the-variables-train"><i class="fa fa-check"></i><b>5.1</b> Examine the Correlation Between the Variables (train)</a></li>
-<li class="chapter" data-level="5.2" data-path="price-prediction-application-of-statistical-methods.html"><a href="price-prediction-application-of-statistical-methods.html#first-predictions-with-simple-regression-models-train"><i class="fa fa-check"></i><b>5.2</b> First Predictions with Simple Regression Models (train)</a></li>
-<li class="chapter" data-level="5.3" data-path="price-prediction-application-of-statistical-methods.html"><a href="price-prediction-application-of-statistical-methods.html#from-training-to-testing-making-predictions"><i class="fa fa-check"></i><b>5.3</b> From Training to Testing – Making Predictions</a></li>
-<li class="chapter" data-level="5.4" data-path="price-prediction-application-of-statistical-methods.html"><a href="price-prediction-application-of-statistical-methods.html#apply-advanced-machine-learning-algorithms"><i class="fa fa-check"></i><b>5.4</b> Apply Advanced Machine Learning Algorithms</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="excercise-checklist.html"><a href="excercise-checklist.html"><i class="fa fa-check"></i><b>6</b> Excercise Checklist</a></li>
 <li class="chapter" data-level="7" data-path="whats-next-in-your-data-science-career.html"><a href="whats-next-in-your-data-science-career.html"><i class="fa fa-check"></i><b>7</b> What’s Next in Your Data Science Career?</a>
@@ -164,26 +147,65 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Data Science Project Guide: Spotify</h1>
-<p class="author"><em>TechAcademy e.V.</em></p>
-<p class="date"><em>Summer Term 2021</em></p>
+<div id="function-that-returns-root-mean-squared-error-while-ignoring-nas" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Function that returns Root Mean Squared Error while ignoring NAs</h1>
+<p>rmse &lt;- function(actual, predicted) {
+sqrt(mean((predicted - actual)^2, na.rm = TRUE))
+}</p>
+<pre><code>::::
+
+
+:::: {.tipsp .python data-latex=&quot;p&quot;}
+After training, import the data from the `test.csv` file, define both variables `X_test`and `y_test`, and create a vector with price predictions applying `.predict(X_test)` on your model. Store your prediction in the variable `predicted_price`.
+ 
+Finally, compare your predicted values with the test values:</code></pre>
+<p>from sklearn.metrics import mean_squared_error
+# Function that returns Root Mean Squared Error while ignoring NaNs
+rmse = mean_squared_error(y_test, predicted_price, squared=False)</p>
+<pre><code>::::
+
+Now compare both regression models. Does the larger model have better prediction accuracy, i.e. a lower $RMSE$? Now you have a benchmark for your more advanced models, which you can beat in the next part.
+
+## Apply Advanced Machine Learning Algorithms
+
+Now that you have created and tested an initial prediction using a simple regression model, you can now apply more advanced methods. The goal is still to get the lowest possible $RMSE$ when applying the model to the test data set. Now look at at least one other algorithm and then see if that gives you a more accurate prediction (expressed as a lower $RMSE$). You can find inspiration for this in the advanced DataCamp courses, which are listed at the beginning of the project guide. There are no limits for you -- you can refine the regression using certain methods (e.g. LASSO) or set up a random forest model or a neural network. It is usually a good idea to briefly recall the functionality of the respective algorithms and to consider whether this methodology makes sense in this case with a continuous prediction variable.
+
+At this point, a disclaimer is appropriate: Our data set has a substantial part of missing observations (`NA`) for many variables. Some machine learning algorithms require a complete set of data with no missing values, while others can do well with a smaller number. If you get into trouble about the missing values, check whether you can impute the missing values. Which method is best for imputation depends heavily on your prediction algorithm.
+
+You can also get a noticeable gain in predictive power by modifying existing variables or generating new variables from the data set (“feature engineering”). For example, we could imagine that the distance from an apartment to the city center has a significant impact on the price. However, this variable is not
+included in our data set. You can write a simple function that uses the two coordinate variables to calculate the distance to the center of Berlin and appends this to the data set as a new variable. 
+
+Always compare the $RMSE$ of your advanced models with each other, as well as with the benchmark regression model from before.
+
+Did you find your best model? Then predict prices with your winning model as above -- but this time on the validation data set `val.csv`.
+
+Attach a `.csv` dataset in the following format with only the two variables `id` and `predicted_price` as an attachment to your project submission. 
+
+
+:::: {.tips .r data-latex=&quot;r&quot;}
+You can do this by adding the two vectors `id` and `predicted_price` together and saving them as a `.csv` file. </code></pre>
+<p>submission &lt;- cbind(val$id, predicted_price_val)
+write.csv(submission, “submission_&lt;<TEAM NAME>&gt;.csv,” row.names=FALSE)
+```</p>
 </div>
-<div id="welcome" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Welcome!</h1>
-<p>In the first few chapters you will be introduced to the basics of the <code>R</code> and <code>Python</code> tracks respectively and you will find helpful explanations to questions you might have in the beginning of your coding journey. There will be a quick introduction to the Data Science track so that you can get started with the project quickly. So let’s get started with the basics!</p>
-<p>In all tracks you will work on your project in small groups of fellow students. This not only helps you get the project done faster, it also helps make your results even better. Our experience shows: The different backgrounds of the members and discussing different opinions and ideas will produce the best results. Besides, it is of course more fun to work on a project together than to code alone!<br />
-The groups can consist of a maximum of three members. You can choose your two teammates independently, we won’t interfere with your arrangements. It is important that all group members complete the same level of difficulty (beginner or advanced), since the tasks are different in scope for each level. We explicitly encourage you to collaborate with students from different departments. This not only allows you to get to know people from other departments, but may even give you a whole new perspective on the project and tasks.
-When submitting it is important to note: for a certificate, each person must submit the project individually. However, this can be identical within your group. You can get more information at our first Coding Meetup on <strong>December 9, 2020</strong>.</p>
-<p>This Airbnb case study and the associated project guide was developed and written entirely from scratch by TechAcademy’s Data Science team. Lara Zaremba, Lukas Jürgensmeier, and Annalisa Strauß developed the project in <code>R</code>, while Felix Schneider and Manuel Mair am Tinkhof developed it in <code>Python</code>. We would also like to give special thanks to Benjamin Lucht for his extensive input when conceiving this project.</p>
+</div>
+<div class="tipsp python">
+<p>You may need to do some mapping operations between the train.csv data and the predictions to get to the data frame with id and predicted prices.</p>
+<p>Similarly as with the <code>pd.read_csv(path/to/file.csv)</code> method to load data, you can also write data with the <code>df.to_csv(file.csv)</code> method.</p>
+</div>
+<p>Congratulations! You’ve made it to the end of your TechAcademy Data Science project. After visualizing the data in the first part, you’ve also set up predictive models in this section. If you stuck around until this part and managed to code the better part of the exercises, you’ve definitely earned your certificate! We hope you had fun learning Data Science with this data set and you enjoyed it – at least the parts where you didn’t get stuck forever because of some unexplainable coding error. Don’t forget to send your project results and the prediction-csv file you just generated to our project submission email address before the deadline.</p>
+
+<div style="page-break-after: always;"></div>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="whats-data-science-and-how-do-i-do-it.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exploratory-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="excercise-checklist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,20 +255,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
