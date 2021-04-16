@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Excercise Checklist | Data Science Project Guide: Spotify</title>
+  <title>5 Popularity Prediction – Application of Statistical Methods | Data Science Project Guide: Spotify</title>
   <meta name="description" content="Everything you need to know for your successful TechAcademy Data Science Project" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Excercise Checklist | Data Science Project Guide: Spotify" />
+  <meta property="og:title" content="5 Popularity Prediction – Application of Statistical Methods | Data Science Project Guide: Spotify" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Excercise Checklist | Data Science Project Guide: Spotify" />
+  <meta name="twitter:title" content="5 Popularity Prediction – Application of Statistical Methods | Data Science Project Guide: Spotify" />
   
   <meta name="twitter:description" content="Everything you need to know for your successful TechAcademy Data Science Project" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="popularity-prediction-application-of-statistical-methods.html"/>
-<link rel="next" href="whats-next-in-your-data-science-career.html"/>
+<link rel="prev" href="exploratory-data-analysis.html"/>
+<link rel="next" href="excercise-checklist.html"/>
 <script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -164,64 +164,106 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excercise-checklist" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Excercise Checklist</h1>
-<p>This checklist should help you keeping track of your exercises. Remember that you have to hand in satisfactory solutions to at least two thirds of the exercises. If you’re part of the beginner track this refers to two thirds of part A (EDA) only. If you’re part of the advanced track, you have to hand in at least two thirds of both individual parts A and B. Hence, you cannot hand in 100 percent of the first part and only 50 percent of the second one. You’ll need more than 66% in each one for a certificate. After all, you’re not really that advanced if you only did half of it, right?</p>
-<p><strong>Part A: Exploratory Data Analysis (Beginners + Advanced)</strong></p>
-<p><strong>Data: Kaggle Data</strong></p>
-<ol style="list-style-type: decimal">
-<li><strong>Getting Started</strong></li>
-</ol>
-<p>1.1 Read in data, show data, give summary of data (mean, count,…)</p>
-<p>1.2 Compute column “duration_minutes” from “duration_ms”</p>
-<p>1.3 Compute mean/std of duration_minutes, which song has the longest duration?</p>
-<p>1.4 Plot histogram of song durations</p>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Time Series: How did songs change over the years?</strong></li>
-</ol>
-<p>2.1 Streaming leads to shorter songs? Group-By: song duration over years</p>
-<p>2.2 Merge songs with song_features on id</p>
-<p>2.3 Compare how features like ‘acousticness,’ ‘danceability,’ ‘energy,’ ‘instrumentalness’ changed over time</p>
-<p>2.4 For Advanced: Radial plot over time</p>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Artists</strong></li>
-</ol>
-<p>3.1 Bar Plot with artists with most songs</p>
-<p>3.2 TODO: Map &amp; merge</p>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>Pairplot: Artist Comparison</strong></li>
-</ol>
-<p>4.1 Look for three different artists and compare the features of the songs with a pairplot</p>
-<p>4.2 Go on <a href="https://seaborn.pydata.org/examples/index.html#" class="uri">https://seaborn.pydata.org/examples/index.html#</a> , look for a plot which could be used to visualize an aspect of the spotfiy data and generate a plot</p>
-<p>4.3 What is the message of your plot? What does it show?</p>
-<p><strong>Data: Personal Spotify Data</strong></p>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Personal Data</strong></li>
-</ol>
-<p>5.1 Generate Bar Plot with top 10 artists</p>
-<p>5.2 Visualize when you listened to music. On which days, to which times?</p>
-<p><strong>Part B: Popularity Prediction Using Statistical Methods ((motivated) Beginners + Advanced)</strong></p>
-<p><strong>Data: Kaggle Data</strong></p>
-<ol style="list-style-type: decimal">
-<li><p>Create correlation plot between features</p></li>
-<li><p>Regression</p></li>
-</ol>
-<p>2.1 Create simple linear model to predict popularity of song</p>
-<p>2.2 Improve your model using more features</p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Train/ Test your model</p></li>
-<li><p>Develop more advanced models</p></li>
-</ol>
+<div id="popularity-prediction-application-of-statistical-methods" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Popularity Prediction – Application of Statistical Methods</h1>
+<p>In the previous part you got a feel for the data set. You now know which variables are included and a few characteristic properties of the data set. But so far, we have only visualized the data set. In this section we go a step further and use statistical methods to predict a song’s popularity as accurately as possible.</p>
+<p>To compare your models, you will use a uniform metric to check the predictions for accuracy. In your case, this is the Root Mean Square Error (RMSE), i.e., the root of the average squared difference between the predicted (<span class="math inline">\(\hat{y}_i\)</span>) and the actual value (<span class="math inline">\(y_i\)</span>) :</p>
+<p><span class="math display">\[ RMSE = \sqrt{\frac{1}{N}\sum_{i=1}^{N}{(\hat{y}_i-y_i)^2}} \]</span></p>
+<p>The closer the <span class="math inline">\(RMSE\)</span> is to 0, the better your model predicts prices. Therefore, in the following section, your goal is to reduce the <span class="math inline">\(RMSE\)</span> of your various models as much as possible through continuous improvements.</p>
+<p>We use the Spotify data set, which contains features about the songs as well as their popularity. When we train our model with the data, we need to estimate how well our model predicts popularity values for songs it has never seen before. Therefore we split our data set into two parts - a train and a test set.</p>
+<p>Here is a brief description of why you need each data set:</p>
+<ul>
+<li><p><em>train.csv (70 %)</em>: You use this training data set to train your model. The model can learn the relationships between the variables based on the training data set containing both the variables needed to predict the popularity and the actual popularity variable.</p></li>
+<li><p><em>test.csv (30 %)</em>: With this test data set, you can test how well your model predicts the popularity using data it has not seen before. This prediction will help you, for example, to recognize under- or overfitting.</p></li>
+</ul>
+<div class="tips r">
+<p>There are multiple ways to split/partition the data set in R. You could, e.g., use <code>createDataPartition()</code> function from <a href="https://cran.r-project.org/package=caret">{caret}</a>, <code>sample.split()</code> function from <a href="https://cran.r-project.org/package=caTools">{caTools}</a> or — perhaps most intuitively — <code>split_train_test()</code> function from <a href="https://CRAN.R-project.org/package=healthcareai">{healthcareai}</a>.</p>
+<p>Make sure, however, to include the <code>set.seed()</code> function in your R code before randomly dividing the data set into train/test parts. <code>set.seed()</code> function allows you to reproduce randomness each time you re-run your code. That means that you always get the same (random) result – a vital aspect of reproducibility within the scientific method.</p>
+</div>
+<div class="tipsp python">
+<p>The sklearn library has a function that you can use to split the data set, correspondingly
+<code>from sklearn.model_selection import train_test_split X_train, X_test, y_train, y_test = train_test_split(df, df.popularity, test_size=0.3)</code></p>
+</div>
+<div id="examine-the-correlation-between-the-variables-train" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Examine the Correlation Between the Variables (train)</h2>
+<p>How are the individual variables related to each other? In other words, to what extent do the variables in the data set correlate with one another? Finding this out is extremely important for deciding which model specification to use later. A good place to start is to create a correlation matrix:</p>
+<div class="tips r">
+<p>Use the <code>cor()</code> function from the {base} R to create a correlation matrix. Select all numerical variables in your data set with the help of <code>sapply()</code> or {dplyr}’s <code>select()</code> and create a correlation matrix.</p>
+<p>Alternatively, use the <code>ggcorrplot()</code> from the same-name <a href="https://cran.r-project.org/package=ggcorrplot">{ggcorrplot}</a> package.</p>
+<p>Check out <a href="http://jamesmarquezportfolio.com/correlation_matrices_in_r.html">this article</a> by James Marquez if you’re curious about other ways to create a correlation plot in R.</p>
+</div>
+<div class="tipsp python">
+<p>You can show the correlations between the features by using the <code>.corr()</code> function on a data frame. You can additionally get a colorized version by using <code>df.corr().style.background_gradient()</code></p>
+</div>
+<p>Which of your examined variables correlates most with popularity and which seems to be more independent from popularity? You now have a first impression of which variables could be vital for your model. So let’s get to your first song popularity prediction model!</p>
+</div>
+<div id="first-predictions-with-simple-regression-models-train" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> First Predictions with Simple Regression Models (train)</h2>
+<p>Now you can make use of your statistical knowledge. You will need a method with which you can predict the popularity of a Spotify song.</p>
+<p>Have you ever heard of linear regression? Now you can use your statistics skills. First, set up a model with popularity as the dependent variable. In the previous exercise, you examined different variables. Now choose the variable with the highest correlation to popularity and use that as the only independent variable.</p>
+<p>For example, your first regression model could look like this:</p>
+<p><span class="math display">\[popularity = \beta_0 + \beta_1 \cdot danceability \]</span></p>
+<div class="tips r">
+<p>In R, you can implement a simple linear regression with the <code>lm()</code> function. You then get the model summary with the <code>summary()</code> function.</p>
+<p>Alternatively, check <a href="https://vincentarelbundock.github.io/modelsummary/">{modelsummary}</a> or <a href="https://www.jakeruss.com/cheatsheets/stargazer/">{stargazer}</a> package to pretty-print the results of your regression model(s).</p>
+<p>Define both dependent (y_train) and independent (X_train) variables and clean the data if necessary.</p>
+</div>
+<div class="tipsp python">
+<p>For the next step the X_train values need to be reshaped .values.reshape(-1,1). Note: If you use more than one feature, you don’t have to reshape your data.</p>
+<p>Import LinearRegression() from sklear.linear_model and train your model using LinearRegression().fit().</p>
+</div>
+<p>Does your independent variable has a statistically significant impact on popularity? Probably yes, because we selected the variable most correlated with popularity. However, if we stick to this very simplified model, we make a typical mistake: the so-called Omitted Variable Bias (OVB). To put it simply, we neglect (in statistics jargon: “do not control for”) variables that have a significant influence on the dependent variable. One could suspect that other influencing factors also play an important role in estimating a song’s popularity. If we do not include them, the estimate of the effect of, e.g., danceability, is biased and hardly helpful. In our case, this is not a big problem for the time being since we are not interested in causal effects but rather in the best possible prediction. Your statistics professor would almost certainly object to such a model. Nonetheless, with just a single explanatory variable, this model will not necessarily predict the popularity well.</p>
+<p>One possible solution is simply to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:
+<span class="math display">\[popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy\]</span>
+Now compare the results of these two models. Does the larger model explain a higher proportion of the variance in popularity? In other words, which model shows the higher value for the <span class="math inline">\(R^2\)</span> measure?</p>
+<div class="tips r">
+<p>Use the <code>summary()</code> function of your model to compare the two models. Which model shows a higher value for <span class="math inline">\(R^2\)</span>? Then you can compare the RMSE between your two models.</p>
+</div>
+<div class="tipsp python">
+<p>You can now compare your two models, therefore compute for each model the <span class="math inline">\(R^2\)</span> value.</p>
+<p><code>import sklearn.metrics as metrics  r2=metrics.r2_score(y_true, y_pred)</code></p>
+</div>
+</div>
+<div id="from-training-to-testing-making-predictions" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> From Training to Testing – Making Predictions</h2>
+<p>You have now trained your first model with the training data set. But how well does the model handle data it has not seen yet? This out-of-sample testing is a critical test to evaluate the quality of your model.</p>
+<p>Did your model only “memorize” the existing patterns in the training data set? Then the relationships from the training data set would not be transferable to the test data set. With so-called overfitting, you trained the model too closely to the training data set and therefore received poor predictions for unknown data – for example, the data in your test set.</p>
+<p>On the other hand, underfitting is also a problem: Your model did not sufficiently learn the actual relationships between the data. Thus, it makes poor predictions on the test data set. So it is essential to find a balance between the two problems.</p>
+<p>Now the distinction between training and test data sets becomes essential. As a reminder: we use the train data to train a model and the test data to test our model’s quality.</p>
+<p>To test your model on previously unseen data, you can apply it to the test data set.</p>
+<div class="tips r">
+<p>Use the predict function for this:</p>
+<p><code>predicted_popularity &lt;- predict(your_saved_model, your_test_data_frame)</code></p>
+<p>You have now created a vector with all popularity predictions for the test data set. You can now compare this with the actual values for popularity from the test data set.</p>
+<p>In order to use a uniform comparison metric, please use the following function to measure your prediction accuracy:</p>
+<p><code># Function that returns Root Mean Squared Error while ignoring NAs rmse &lt;- function(actual, predicted) { sqrt(mean((predicted - actual)^2, na.rm = TRUE))</code></p>
+<p>After training, import the data from the <code>test.csv</code> file, define both variables <code>X_test</code> and <code>y_test</code>, and create a vector with price predictions applying <code>predict(X_test)</code> on your model. Store your prediction in the variable <code>predicted_popularity</code>.</p>
+</div>
+<div class="tipsp python">
+<p>Finally, compare your predicted values with the test values:</p>
+<p>from sklearn.metrics import mean_squared_error
+# Function that returns Root Mean Squared Error while ignoring NaNs
+rmse = mean_squared_error(y_test, predicted_popularity, squared=False)</p>
+</div>
+<p>Now compare both regression models. Does the larger model have better prediction accuracy, i.e., a lower <span class="math inline">\(RMSE\)</span>? Now you have a benchmark for your more advanced models, which you can beat in the next part.</p>
+</div>
+<div id="apply-advanced-machine-learning-algorithms" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Apply Advanced Machine Learning Algorithms</h2>
+<p>Now that you have created and tested an initial prediction using a simple regression model, you can apply more advanced methods. The goal is to get the lowest possible <span class="math inline">\(RMSE\)</span> when applying the model to the test data set. Look for at least one other algorithm and check whether it gives you a more accurate prediction (expressed as a lower <span class="math inline">\(RMSE\)</span> ). You can find inspiration for this in the advanced DataCamp courses listed at the beginning of the project guide. There are no limits – you can refine the regression using specific methods (e.g., LASSO) or set up a random forest model or a neural network. It is usually a good idea to briefly recall the respective algorithm’s functionality and consider whether this methodology makes sense with a continuous prediction variable.</p>
+<p>You can also get a noticeable gain in predictive power by modifying existing variables or generating new variables from the data set (“feature engineering”). For example, you could create features based on artists. You could count the number of songs each artist produced or the mean popularity of each artist. You could also write a function that computes each artist’s mean popularity in the train data set and adds these values to the train data set. Afterward, you can add the same values to the test set, but keep in mind that there can be artists in the test set who are not in the train set. Therefore you could set the values for these artists to the mean popularity of all artists.</p>
+<p>Always compare the <span class="math inline">\(RMSE\)</span> of your advanced models with each other, as well as with the benchmark regression model from before.</p>
+<p>Congratulations! You’ve made it to the end of your TechAcademy Data Science project. After visualizing the data in the first part, you’ve also set up predictive models in this section. If you stuck around until this part and managed to code the better part of the exercises, you’ve definitively earned your certificate! We hope you had fun learning Data Science with this data set and that you enjoyed it – at least the parts where you didn’t get stuck forever because of some unexplainable coding error. Don’t forget to send your project results to our project submission email address before the deadline.</p>
 
 <div style="page-break-after: always;"></div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="popularity-prediction-application-of-statistical-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="whats-next-in-your-data-science-career.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exploratory-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="excercise-checklist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

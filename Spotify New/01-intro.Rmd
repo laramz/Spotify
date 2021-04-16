@@ -13,10 +13,9 @@ It might happen that questions come up or that you don’t know how to solve a t
  
 ## What is this Project About?
  
-Last semester, we dealt with the business model of Airbnb. This semester, we will have a look at Spotify data! More precisely, we are analyzing a very detailed Spotify data set after which you will get the chance to look at your own Spotify data. You will find all kinds of information in the data sets - useful and useless ones.
+Last semester, we dealt with the business model of Airbnb. This semester, we will have a look at Spotify data! More precisely, we are first analyzing a very detailed Spotify data set, after which you will get the chance to look at your own Spotify data. You will find all kinds of information in the data sets - useful and useless ones.
 
-
-Are you already curious to see for yourself? In analogy to the typical Data Science workflow, we split this project into two parts. First you are going to learn how to perform an Exploratory Data Analysis (EDA). You will have a closer look at the data, transform it and then get to know the different variables and what they look like in different types of visualizations. Beginners will have completed the project after this, but it will be beneficial to also try and work on the next part: In the second part of the project you will come up with a model that predicts Airbnb prices in Berlin as accurately as possible. You are going to start with a linear regression model, which you can modify as you please and then you can explore all the other possibilities of modeling and predicting data. 
+Are you already curious to see for yourself? In analogy to the typical Data Science workflow, we split this project into two parts. First you are going to learn how to perform an Exploratory Data Analysis (EDA). You will have a closer look at the data, transform it and then get to know the different variables and what they look like in different types of visualizations. Beginners will have completed the project after this, but it will be beneficial to also try and work on the next part: In the second part of the project you will come up with a model that predicts a song's popularity as accurately as possible. You are going to start with a linear regression model, which you can modify as you please and then you can explore all the other possibilities of modeling and predicting data. 
 
 But first things first: What exactly is EDA and what can you achieve with it?
 
@@ -34,7 +33,7 @@ This project guide is structured in the following format. Since the concept of D
  
 This part is mainly for the advanced TechAcademy participants. If you are a beginner and you were able to complete the first part without too many difficulties, we highly recommend trying to do the second part as well. Statistical models are a major part of data science and this is your chance of developing skills in this area.
  
-You got to know the data in the first part and you should be familiar with it so that it is now possible to use it to make predictions about Airbnb prices based on information you have about the apartments. After having completed the second part, you will send us your predictions and we will then check how accurate your model was. The best model will win!
+You got to know the data in the first part and you should be familiar with it so that it is now possible to use it to make predictions about a song's popularity based on information you have about the songs in the data set. 
  
 For this part of the project, we recommend the advanced courses mentioned in the introductory chapter. Please note that there are more courses available so if you want to extend your skills even further, feel free and complete more courses on the topics that interest you. We recommend that you finish the courses at least until and including *Unsupervised Learning in Python* for the `Python` track and *Machine Learning Toolbox* for the `R` track. 
 

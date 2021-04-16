@@ -35,7 +35,7 @@ discover-new-visualization-methods
 analyse-personal-spotify-data
 generate-bar-plot-with-top-10-artists
 visualize-your-streaming-behavior
-price-prediction-application-of-statistical-methods
+popularity-prediction-application-of-statistical-methods
 examine-the-correlation-between-the-variables-train
 first-predictions-with-simple-regression-models-train
 from-training-to-testing-making-predictions

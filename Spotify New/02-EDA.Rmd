@@ -478,7 +478,7 @@ Try it out and visualize it in a plot.
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("splots/feature_comparison.png")
+knitr::include_graphics("splots/personal_streaming.png")
 ```
 
 
