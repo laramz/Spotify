@@ -3,5 +3,5 @@ delete_merged_file: true
 language:
   ui:
     chapter_name: ""
-
+    
 output_dir: '/Users/larazaremba/Documents/GitHub/Spotify'
