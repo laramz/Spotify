@@ -32,13 +32,13 @@ This checklist should help you keeping track of your exercises. Remember that yo
 
 3.1 Bar Plot with artists with most songs
 
-3.2 TODO: Map & merge
+3.2 Map with top songs in each country
 
 4. **Pairplot: Artist Comparison**
 
 4.1 Look for three different artists and compare the features of the songs with a pairplot
 
-4.2 Go on https://seaborn.pydata.org/examples/index.html# , look for a plot which could be used to visualize an aspect of the spotfiy data and generate a plot
+4.2 Look at the proposed galary and look for a plot which could be used to visualize an aspect of the spotfiy data and generate a plot
 
 4.3 What is the message of your plot? What does it show?
 
