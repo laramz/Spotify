@@ -34,7 +34,7 @@ In this chapter, you will apply the knowledge that you gained throughout the sem
 Before you can dive into the data, set up your programming environment. This will be the place where the magic happens -- all your coding will take place there.
  
 :::: {.tips .r data-latex="r"}
-In your workspace on [rstudio.cloud](https://rstudio.cloud/projects), we have already uploaded an “assignment” for you (Template Airbnb). When you create a new project within the workspace *Class of ’21 | TechAcademy | Data Science with R*, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!
+In your workspace on [rstudio.cloud](https://rstudio.cloud/projects), we have already uploaded an “assignment” for you (Template Spotify). When you create a new project within the workspace *Class of ’21 | TechAcademy | Data Science with R*, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!
 ::::
 
 
@@ -42,7 +42,7 @@ In your workspace on [rstudio.cloud](https://rstudio.cloud/projects), we have al
 We recommend using [Google Colab](https://colab.research.google.com) for this project since it requires no particular setup, stores its notebooks to your Google Drive, and makes it easy for you to share them with your team members.
 
 As an alternative to Google Colab, you might want to install Jupyter Notebook locally using the Anaconda distribution.
-Either way, when importing Airbnb data, you can use the links to the respective data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.
+Either way, when importing Spotify data, you can use the links to the respective data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.
 
 We will give you a more detailed step by step demo during the first coding meetup.
 
@@ -58,7 +58,7 @@ First things first, you will need to load the following two CSV files into your 
 
 
 
-How is the data structured, and which variables does it contain?To get a peek at the data you’ll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.
+How is the data structured, and which variables does it contain? To get a peek at the data you’ll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.
 
 
 :::: {.tips .r data-latex="r"}
@@ -76,9 +76,12 @@ To find more ways to generate quick data summaries in R, check [this](https://da
 
 Start by importing the pandas’ library: `import pandas as pd`.
 You can use the same panda’s method you used to import CSV data from your local machine to import CSV data from a web server: Just replace the file path with the URL of the CSV file.
+
 The URLs are: 
-spotify_songs.csv: https://tinyurl.com/TechAcademy-songs
-song_features.csv: https://tinyurl.com/TechAcadey-song-features
+
+- spotify_songs.csv: https://tinyurl.com/TechAcademy-songs
+- song_features.csv: https://tinyurl.com/TechAcadey-song-features
+
 Finally, get familiar with the data by outputting some of the data frame (e.g. `df.head()`), as well as some basic information such as column data types and some descriptive statistics (`df.info()` `df.describe()`).
 ::::
 
@@ -400,7 +403,7 @@ Visit ["The R Graph Gallery"](https://www.r-graph-gallery.com/all-graphs) to fin
 :::: {.tipsp .python data-latex="p"}
 
 
-Visit the [“Seaborn Gallery”] (https://seaborn.pydata.org/examples/index.html#), look for a plot that you could use to visualize an aspect of Spotify data and generate a visualization.
+Visit the ["Seaborn Gallery"] (https://seaborn.pydata.org/examples/index.html#), look for a plot that you could use to visualize an aspect of Spotify data and generate a visualization.
 ::::
 
 ## Analyse Personal Spotify Data
