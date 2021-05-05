@@ -548,7 +548,7 @@ Before you can dive into the data, set up your programming environment. This wil
 
 \begin{tips}r
 
-In your workspace on \href{https://rstudio.cloud/projects}{rstudio.cloud}, we have already uploaded an ``assignment'' for you (Template Airbnb). When you create a new project within the workspace \emph{Class of '21 \textbar{} TechAcademy \textbar{} Data Science with R}, your workspace will open up. We've already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an `RMarkdown' file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file ``Markdown\_Spotify.Rmd'' and see for yourself!
+In your workspace on \href{https://rstudio.cloud/projects}{rstudio.cloud}, we have already uploaded an ``assignment'' for you (Template Spotify). When you create a new project within the workspace \emph{Class of '21 \textbar{} TechAcademy \textbar{} Data Science with R}, your workspace will open up. We've already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an `RMarkdown' file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file ``Markdown\_Spotify.Rmd'' and see for yourself!
 
 \end{tips}
 
@@ -557,7 +557,7 @@ In your workspace on \href{https://rstudio.cloud/projects}{rstudio.cloud}, we ha
 We recommend using \href{https://colab.research.google.com}{Google Colab} for this project since it requires no particular setup, stores its notebooks to your Google Drive, and makes it easy for you to share them with your team members.
 
 As an alternative to Google Colab, you might want to install Jupyter Notebook locally using the Anaconda distribution.
-Either way, when importing Airbnb data, you can use the links to the respective data files provided in the ``Data-Links'' document, which you will find in the TechAcademy drive.
+Either way, when importing Spotify data, you can use the links to the respective data files provided in the ``Data-Links'' document, which you will find in the TechAcademy drive.
 
 We will give you a more detailed step by step demo during the first coding meetup.
 
@@ -576,7 +576,7 @@ First things first, you will need to load the following two CSV files into your 
   \href{https://drive.google.com/uc?export=download\&id=1gHO566_qxBbz7t8fcH10uVQDAmxK33IF}{song\_features.csv}
 \end{itemize}
 
-How is the data structured, and which variables does it contain?To get a peek at the data you'll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column's data types.
+How is the data structured, and which variables does it contain? To get a peek at the data you'll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column's data types.
 
 \begin{tips}r
 
@@ -595,9 +595,17 @@ To find more ways to generate quick data summaries in R, check \href{https://dab
 
 Start by importing the pandas' library: \texttt{import\ pandas\ as\ pd}.
 You can use the same panda's method you used to import CSV data from your local machine to import CSV data from a web server: Just replace the file path with the URL of the CSV file.
+
 The URLs are:
-spotify\_songs.csv: \url{https://tinyurl.com/TechAcademy-songs}
-song\_features.csv: \url{https://tinyurl.com/TechAcadey-song-features}
+
+\begin{itemize}
+\tightlist
+\item
+  spotify\_songs.csv: \url{https://tinyurl.com/TechAcademy-songs}
+\item
+  song\_features.csv: \url{https://tinyurl.com/TechAcadey-song-features}
+\end{itemize}
+
 Finally, get familiar with the data by outputting some of the data frame (e.g.~\texttt{df.head()}), as well as some basic information such as column data types and some descriptive statistics (\texttt{df.info()} \texttt{df.describe()}).
 
 \end{tipsp}
@@ -1230,7 +1238,7 @@ This checklist should help you keeping track of your exercises. Remember that yo
 
 3.1 Bar Plot with artists with most songs
 
-3.2 TODO: Map \& merge
+3.2 Map with top songs in each country
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1242,7 +1250,7 @@ This checklist should help you keeping track of your exercises. Remember that yo
 
 4.1 Look for three different artists and compare the features of the songs with a pairplot
 
-4.2 Go on \url{https://seaborn.pydata.org/examples/index.html\#} , look for a plot which could be used to visualize an aspect of the spotfiy data and generate a plot
+4.2 Look at the proposed galary and look for a plot which could be used to visualize an aspect of the spotfiy data and generate a plot
 
 4.3 What is the message of your plot? What does it show?
 

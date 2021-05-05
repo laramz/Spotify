@@ -188,12 +188,12 @@ In chapter 4.5, we will use the requested personal Spotify data, and you can use
 <p>In this chapter, you will apply the knowledge that you gained throughout the semester to real-world data. The exercises will cover typical problems that you usually encounter when analyzing data.</p>
 <p>Before you can dive into the data, set up your programming environment. This will be the place where the magic happens – all your coding will take place there.</p>
 <div class="tips r">
-<p>In your workspace on <a href="https://rstudio.cloud/projects">rstudio.cloud</a>, we have already uploaded an “assignment” for you (Template Airbnb). When you create a new project within the workspace <em>Class of ’21 | TechAcademy | Data Science with R</em>, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!</p>
+<p>In your workspace on <a href="https://rstudio.cloud/projects">rstudio.cloud</a>, we have already uploaded an “assignment” for you (Template Spotify). When you create a new project within the workspace <em>Class of ’21 | TechAcademy | Data Science with R</em>, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!</p>
 </div>
 <div class="tipsp python">
 <p>We recommend using <a href="https://colab.research.google.com">Google Colab</a> for this project since it requires no particular setup, stores its notebooks to your Google Drive, and makes it easy for you to share them with your team members.</p>
 <p>As an alternative to Google Colab, you might want to install Jupyter Notebook locally using the Anaconda distribution.
-Either way, when importing Airbnb data, you can use the links to the respective data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.</p>
+Either way, when importing Spotify data, you can use the links to the respective data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.</p>
 <p>We will give you a more detailed step by step demo during the first coding meetup.</p>
 </div>
 <div id="importing-data" class="section level3" number="4.1.1">
@@ -203,7 +203,7 @@ Either way, when importing Airbnb data, you can use the links to the respective 
 <li><a href="https://drive.google.com/uc?export=download&amp;id=1OmFrdUaPFatpPLRikLJHS-VoF1F27G73">spotify_songs.csv</a></li>
 <li><a href="https://drive.google.com/uc?export=download&amp;id=1gHO566_qxBbz7t8fcH10uVQDAmxK33IF">song_features.csv</a></li>
 </ul>
-<p>How is the data structured, and which variables does it contain?To get a peek at the data you’ll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.</p>
+<p>How is the data structured, and which variables does it contain? To get a peek at the data you’ll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.</p>
 <div class="tips r">
 <p>First, the data set has to be loaded from your folder structure into the workspace. Import both the <code>song_features.csv</code> and the <code>spotify_songs.csv</code> data sets into your workspace (e.g., using {base} R’s <code>read.csv()</code>, <a href="https://readr.tidyverse.org">{readr}</a>’s <code>read_csv()</code> or <a href="https://rdatatable.gitlab.io/data.table/">{data.table}</a>’s <code>fread()</code> function) and name the object(s) accordingly.</p>
 <p>Though you can name the object however you wish, we recommend using <code>original_file_name</code> + e.g., <code>_df</code> (for data.frame) / <code>_tbl</code>(for tibble) / <code>_DT</code> (for data.table) naming convention, so that you can easily distinguish your R objects (data frames, plots, vectors, etc.) later on.</p>
@@ -213,11 +213,13 @@ To find more ways to generate quick data summaries in R, check <a href="https://
 </div>
 <div class="tipsp python">
 <p>Start by importing the pandas’ library: <code>import pandas as pd</code>.
-You can use the same panda’s method you used to import CSV data from your local machine to import CSV data from a web server: Just replace the file path with the URL of the CSV file.
-The URLs are:
-spotify_songs.csv: <a href="https://tinyurl.com/TechAcademy-songs" class="uri">https://tinyurl.com/TechAcademy-songs</a>
-song_features.csv: <a href="https://tinyurl.com/TechAcadey-song-features" class="uri">https://tinyurl.com/TechAcadey-song-features</a>
-Finally, get familiar with the data by outputting some of the data frame (e.g. <code>df.head()</code>), as well as some basic information such as column data types and some descriptive statistics (<code>df.info()</code> <code>df.describe()</code>).</p>
+You can use the same panda’s method you used to import CSV data from your local machine to import CSV data from a web server: Just replace the file path with the URL of the CSV file.</p>
+<p>The URLs are:</p>
+<ul>
+<li>spotify_songs.csv: <a href="https://tinyurl.com/TechAcademy-songs" class="uri">https://tinyurl.com/TechAcademy-songs</a></li>
+<li>song_features.csv: <a href="https://tinyurl.com/TechAcadey-song-features" class="uri">https://tinyurl.com/TechAcadey-song-features</a></li>
+</ul>
+<p>Finally, get familiar with the data by outputting some of the data frame (e.g. <code>df.head()</code>), as well as some basic information such as column data types and some descriptive statistics (<code>df.info()</code> <code>df.describe()</code>).</p>
 </div>
 </div>
 <div id="convert-milliseconds-to-minutes" class="section level3" number="4.1.2">
