@@ -1,7 +1,7 @@
 \newpage
 # Popularity Prediction -- Application of Statistical Methods
 
-In the previous part you got a feel for the data set. You now know which variables are included and a few characteristic properties of the data set. But so far, we have only visualized the data set. In this section we go a step further and use statistical methods to predict a song's popularity as accurately as possible.
+In the last part, you got a feel for the data set. You now know which variables the data set contains and a few characteristic properties of it. But so far, we have only visualized the data set. This section goes a step further and uses statistical methods to predict a song's popularity as accurately as possible.
 
 To compare your models, you will use a uniform metric to check the predictions for accuracy. In your case, this is the Root Mean Square Error (RMSE), i.e., the root of the average squared difference between the predicted ($\hat{y}_i$) and the actual value ($y_i$) :
 
@@ -33,7 +33,7 @@ X_train, X_test, y_train, y_test = train_test_split(df, df.popularity, test_size
 
 ## Examine the Correlation Between the Variables (train)
 
-How are the individual variables related to each other? In other words, to what extent do the variables in the data set correlate with one another? Finding this out is extremely important for deciding which model specification to use later. A good place to start is to create a correlation matrix:
+How are the individual variables related to each other? In other words, to what extent do the variables in the data set correlate with one another? Finding this out is vital for deciding which model specification to use later. A good place to start is to create a correlation matrix:
 
 :::: {.tips .r data-latex="r"}
 Use the `cor()` function from the {base} R to create a correlation matrix. Select all numerical variables in your data set with the help of `sapply()` or {dplyr}’s `select()` and create a correlation matrix.
@@ -57,8 +57,8 @@ Now you can make use of your statistical knowledge. You will need a method with 
 Have you ever heard of linear regression? Now you can use your statistics skills. First, set up a model with popularity as the dependent variable. In the previous exercise, you examined different variables. Now choose the variable with the highest correlation to popularity and use that as the only independent variable.
  
 For example, your first regression model could look like this:
- 
-$$popularity = \beta_0 + \beta_1 \cdot danceability $$
+
+$$ popularity = \beta_0 + \beta_1 \cdot danceability $$
  
  
 :::: {.tips .r data-latex="r"}
@@ -80,8 +80,10 @@ Import LinearRegression() from sklear.linear_model and train your model using Li
  
 Does your independent variable has a statistically significant impact on popularity? Probably yes, because we selected the variable most correlated with popularity. However, if we stick to this very simplified model, we make a typical mistake: the so-called Omitted Variable Bias (OVB). To put it simply, we neglect (in statistics jargon: “do not control for”) variables that have a significant influence on the dependent variable. One could suspect that other influencing factors also play an important role in estimating a song’s popularity. If we do not include them, the estimate of the effect of, e.g., danceability, is biased and hardly helpful. In our case, this is not a big problem for the time being since we are not interested in causal effects but rather in the best possible prediction. Your statistics professor would almost certainly object to such a model. Nonetheless, with just a single explanatory variable, this model will not necessarily predict the popularity well.
  
-One possible solution is simply to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:
-$$popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy$$
+One possible solution is to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:
+
+$$ popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy $$
+
 Now compare the results of these two models. Does the larger model explain a higher proportion of the variance in popularity? In other words, which model shows the higher value for the $R^2$ measure?
  
 :::: {.tips .r data-latex="r"}
@@ -143,4 +145,3 @@ You can also get a noticeable gain in predictive power by modifying existing var
 Always compare the $RMSE$ of your advanced models with each other, as well as with the benchmark regression model from before.
  
 Congratulations! You’ve made it to the end of your TechAcademy Data Science project. After visualizing the data in the first part, you’ve also set up predictive models in this section. If you stuck around until this part and managed to code the better part of the exercises, you’ve definitively earned your certificate! We hope you had fun learning Data Science with this data set and that you enjoyed it – at least the parts where you didn’t get stuck forever because of some unexplainable coding error. Don’t forget to send your project results to our project submission email address before the deadline.
-
