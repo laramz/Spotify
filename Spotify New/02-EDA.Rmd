@@ -59,7 +59,7 @@ First things first, you will need to load the following two CSV files into your 
 
 
 
-How is the data structured, and which variables does it contain? To get a peek at the data you’ll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.
+How is the data structured, and which variables does it contain? To get a peek at the data you’ll be working with, output the first/last few rows. Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.
 
 
 :::: {.tips .r data-latex="r"}
