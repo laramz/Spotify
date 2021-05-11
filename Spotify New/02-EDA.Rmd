@@ -284,7 +284,7 @@ As always, try updating font size, layout, etc., as you like.
 ::::
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("splots/features_over_time_advanced.png")
+knitr::include_graphics("splots/spider.gif")
 ```
 
 
@@ -362,7 +362,7 @@ Display the map by solely typing the letter `m`.
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("splots/map.png")
+knitr::include_graphics("splots/map.gif")
 ```
 
 ## Compare Artists Based on their Songs
