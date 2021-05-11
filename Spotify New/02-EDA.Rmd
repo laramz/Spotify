@@ -20,7 +20,7 @@ knitr::include_graphics("splots/spotify.png")
 ```
 
 4. Click on *Request*. You will probably have to complete a captcha and will receive a confirmation email.
-5. Click “Confirm” in the email. This confirmation will take you back to Spotify, where you will receive an on-screen notification saying:“We are preparing your data file. This [process] can take up to 30 days to complete. You’ll receive an email when it is ready to download.” - Spotify
+5. Click “Confirm” in the email. This confirmation will take you back to Spotify, where you will receive an on-screen notification saying: “We are preparing your data file. This [process] can take up to 30 days to complete. You’ll receive an email when it is ready to download.” - Spotify
 6. When the data preparation is complete, return to Privacy settings; you will now have access to Step 3.
 7. Click on Download.
 
