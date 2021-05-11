@@ -89,7 +89,7 @@ Finally, get familiar with the data by outputting some of the data frame (e.g. `
 ### Convert Milliseconds to Minutes
 
 
-**We will start with the data set “spotify_songs.csv”.**
+**We will start with the data set `spotify_songs.csv`.**
 
 You might have noticed a column with song durations given in milliseconds from the task before. Since (presumably) no one measures song durations in milliseconds, convert them into minutes.
 
@@ -220,7 +220,7 @@ https://pandas.pydata.org/docs/user_guide/merging.html
 ### Line Plot
 
 
-Your goal for this task is to plot how 'acousticness', 'danceability', 'energy', 'valence', 'speechiness', and 'instrumentalness' changed over time.
+Your goal for this task is to plot how `acousticness`, `danceability`, `energy`, `valence`, `speechiness`, and `instrumentalness` changed over time.
  
 :::: {.tips .r data-latex="r"}
 This task involves three steps: creating a summarized data set, reshaping that data set from wide to long format if you'd like to use {ggplot2} and finally -- plotting it. 
@@ -253,7 +253,7 @@ knitr::include_graphics("splots/features_over_time.png")
 
 Let’s get a little fancy by displaying the yearly average song feature values through an interactive radar chart (aka spider plot or polar plot). This chart is very favorable in some cases when you try to display more than two dimensions. Here, each column (or dimension) gets its axis, and the dots on each axis are connected, resulting in a polygon shape.
 
-The features you’ll need to plot are: 'acousticness', 'danceability', 'energy', 'valence', 'speechiness', and 'instrumentalness'.
+The features you’ll need to plot are: `acousticness`, `danceability`, `energy`, `valence`, `speechiness`, and `instrumentalness`.
 
 :::: {.tips .r data-latex="r"}
 Use the [{plotly}](https://plotly.com/r/getting-started/) package to create an interactive Radar/Spider chart of six columns over time. Similar to task 2.3 before, this task will involve summarizing, transforming, and plotting the data.
@@ -440,7 +440,7 @@ So, what pandas method could you use to load JSON files ;) ?
 
 ::::
 
-After you loaded the file into your environment, take some time to first look at the data. Print out a couple of rows and look at what columns this data set contains. It could be helpful again to compute a column “minutesPlayed” from the column “msPlayed”.
+After you loaded the file into your environment, take some time to first look at the data. Print out a couple of rows and look at what columns this data set contains. It could be helpful again to compute a column `minutesPlayed` from the column `msPlayed`.
 Afterward, you can create a graph with the artists you listened to the most.
 
 :::: {.tips .r data-latex="r"}
