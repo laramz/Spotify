@@ -32,7 +32,7 @@ In the next couple of days, you will receive an email from Spotify to download y
 
 In this chapter, you will apply the knowledge that you gained throughout the semester to real-world data. The exercises will cover typical problems that you usually encounter when analyzing data.
 
-Before you can dive into the data, set up your programming environment. This will be the place where the magic happens -- all your coding will take place there.
+Before you can dive into the data, set up your programming environment. This environment will be the place where the magic happens -- all your coding will take place there.
  
 :::: {.tips .r data-latex="r"}
 In your workspace on [rstudio.cloud](https://rstudio.cloud/projects), we have already uploaded an “assignment” for you (Template Spotify). When you create a new project within the workspace *Class of ’21 | TechAcademy | Data Science with R*, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into an HTML document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!
@@ -43,9 +43,9 @@ In your workspace on [rstudio.cloud](https://rstudio.cloud/projects), we have al
 We recommend using [Google Colab](https://colab.research.google.com) for this project since it requires no particular setup, stores its notebooks to your Google Drive, and makes it easy for you to share them with your team members.
 
 As an alternative to Google Colab, you might want to install Jupyter Notebook locally using the Anaconda distribution.
-Either way, when importing Spotify data, you can use the links to the respective data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.
+Either way, when importing Spotify data, you can use the links to the separate data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.
 
-We will give you a more detailed step by step demo during the first coding meetup.
+We will give you a more detailed step-by-step demo during the first coding meetup.
 
 ::::
 
@@ -233,7 +233,7 @@ Use the {ggplot2} to create a line chart of six variables for this task's final 
 ::::
 
 :::: {.tipsp .python data-latex="p"}
-Once again, group the entries by year, get the mean values for the respective column for all years and use matplotlibs’ pyplot for plotting.
+Once again, group the entries by year, get the mean values for the respective column for all years, and use matplotlibs’ pyplot for plotting.
 Don’t forget to add a legend and axis labels to the plot.
 ::::
 
