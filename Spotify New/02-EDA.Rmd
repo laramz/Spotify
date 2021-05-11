@@ -35,7 +35,7 @@ In this chapter, you will apply the knowledge that you gained throughout the sem
 Before you can dive into the data, set up your programming environment. This will be the place where the magic happens -- all your coding will take place there.
  
 :::: {.tips .r data-latex="r"}
-In your workspace on [rstudio.cloud](https://rstudio.cloud/projects), we have already uploaded an “assignment” for you (Template Spotify). When you create a new project within the workspace *Class of ’21 | TechAcademy | Data Science with R*, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!
+In your workspace on [rstudio.cloud](https://rstudio.cloud/projects), we have already uploaded an “assignment” for you (Template Spotify). When you create a new project within the workspace *Class of ’21 | TechAcademy | Data Science with R*, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into an HTML document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!
 ::::
 
 
