@@ -10,6 +10,7 @@ If you do not use Spotify personally, you can skip this step and start with chap
 In chapter 4.5, we will use the requested personal Spotify data, and you can use the data from one of your team members. If nobody on your team uses Spotify, we will provide you with some dummy data.
 
 We will follow eight steps based on [this](https://www.makeuseof.com/tag/download-privacy-data-spotify/) blog post by Dan Price to download your personal Spotify data:
+
 1. Go to https://accounts.spotify.com/en/status and enter your login credentials.
 2. In the menu on the screen’s left-hand side, click on Privacy settings.
 3. Scroll down to the Download your data section. You will see the following:
