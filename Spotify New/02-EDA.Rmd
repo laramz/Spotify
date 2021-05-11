@@ -323,9 +323,11 @@ The goal should be to create a map with a hover effect displaying each countryâ€
 
 
 :::: {.tips .r data-latex="r"}
-Use [{highcharter}](https://jkunst.com/highcharter/) to create a simple interactive map. Check [this documentation](https://jkunst.com/highcharter/articles/maps.html) if you'd like to do that. In the case of {highcharter}, you do not need any additional data as the package relies on `ISO Alpha 2` (two-letter) country codes supplied in the data set.
+First, load the data set `weekly_charts.csv` and find each country's top song. You could use the familiar {dplyr} verbs for this part. You could also save the resulting data set for plotting.
 
-Alternatively, use {plotly} to create an interactive map. In this case, you have more customization options, but you need to add `ISO Alpha 3` (three-letter) country codes to your data set. You can load [this CSV file](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv) via URL to merge it with your data set. Then, create a plot using {plotly} as described [here](https://plotly.com/r/choropleth-maps/).
+Then, use [{highcharter}](https://jkunst.com/highcharter/) to create a simple interactive map. Check [this documentation](https://jkunst.com/highcharter/articles/maps.html) if you'd like to do that. In the case of {highcharter}, you do not need any additional data as the package relies on `ISO Alpha 2` (two-letter) country codes supplied in the `country` column of the `weekly_charts.csv` data set. Make use of {highcharter}'s `hc_tooltip()` function and its `pointFormat` argument for a mouse hover effect.
+
+Alternatively, use {plotly} to create an interactive map. In this case, you have more customization options, but you need to add `ISO Alpha 3` (three-letter) country codes to the `weekly_charts.csv` data set. You can load [this CSV file](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv) via URL to merge `ISO Alpha 3` country codes with countries in the `weekly_charts.csv` data set. Then, create a plot using {plotly} as described [here](https://plotly.com/r/choropleth-maps/).
 ::::
 
 
