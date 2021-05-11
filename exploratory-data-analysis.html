@@ -349,8 +349,14 @@ Don’t forget to add a legend and axis labels to the plot.</p>
 <p>Use the already computed data frame with average feature values for each year. Note that after you grouped the data frame, the <code>year</code> column automatically has been set to be the index column – reverse that (i.e., “reset” the index).
 Then apply the <code>.melt("year")</code> method on the data frame and have a look at the result. Before continuing, briefly try to understand what happened.</p>
 <p>Done that, you can create the radial plot with the <code>px.line_polar(...)</code> method. The documentation (google something like “plotly express radar chart” to find the documentation) tells you which arguments you need (and can) pass to this method:
-- Of course, you need to pass some value for the <code>data_frame</code> argument. For our purpose, this will be the melted data frame.
-- You’ll also need to pass values for the keyword arguments <code>r</code>, <code>theta</code>, <code>animation_frame</code>, <code>line_close</code>, and <code>range_r</code>.
+<ul>
+  <li>
+    - Of course, you need to pass some value for the <code>data_frame</code> argument. For our purpose, this will be the melted data frame.
+  </li>
+  <li>
+    - You’ll also need to pass values for the keyword arguments <code>r</code>, <code>theta</code>, <code>animation_frame</code>, <code>line_close</code>, and <code>range_r</code>.
+  </li>
+</ul>
 The values for these arguments are the strings <code>“value”</code>, <code>“variable”</code>, <code>“year”</code>, the boolean value <code>True</code>, and the tuple <code>(0,1)</code> respectively.</p>
 <p>Apply <code>.show()</code> directly after the <code>line_polar(...)</code> method to display the plot.</p>
 <p>As always, try updating font size, layout, etc., as you like.</p>
