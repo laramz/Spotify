@@ -236,7 +236,8 @@
 <p><code>predicted_popularity &lt;- predict(your_saved_model, your_test_data_frame)</code></p>
 <p>You have now created a vector with all popularity predictions for the test data set. You can now compare this with the actual values for popularity from the test data set.</p>
 <p>In order to use a uniform comparison metric, please use the following function to measure your prediction accuracy:</p>
-<p><code># Function that returns Root Mean Squared Error while ignoring NAs rmse &lt;- function(actual, predicted) { sqrt(mean((predicted - actual)^2, na.rm = TRUE))</code></p>
+<p><code># Function that returns Root Mean Squared Error while ignoring NAs</code></p>
+<p><code>rmse &lt;- function(actual, predicted) { sqrt(mean((predicted - actual)^2, na.rm = TRUE))}</code></p>
 <p>After training, import the data from the <code>test.csv</code> file, define both variables <code>X_test</code> and <code>y_test</code>, and create a vector with price predictions applying <code>predict(X_test)</code> on your model. Store your prediction in the variable <code>predicted_popularity</code>.</p>
 </div>
 <div class="tipsp python">
