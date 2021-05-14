@@ -314,7 +314,7 @@ knitr::include_graphics("splots/artists_bar_chart.png")
 ```
 
 
-### Charts 
+### Charts (Advanced)
 
 
 Care to discover new songs?

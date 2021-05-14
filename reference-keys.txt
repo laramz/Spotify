@@ -28,7 +28,7 @@ line-plot
 radar-plot-advanced
 artists
 most-productive-artists
-charts
+charts-advanced
 compare-artists-based-on-their-songs
 pairplot-of-different-artists
 discover-new-visualization-methods
