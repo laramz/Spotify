@@ -166,7 +166,7 @@
             <section class="normal" id="section-">
 <div id="popularity-prediction-application-of-statistical-methods" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Popularity Prediction – Application of Statistical Methods</h1>
-<p>In the previous part you got a feel for the data set. You now know which variables are included and a few characteristic properties of the data set. But so far, we have only visualized the data set. In this section we go a step further and use statistical methods to predict a song’s popularity as accurately as possible.</p>
+<p>In the last part, you got a feel for the data set. You now know which variables the data set contains and a few characteristic properties of it. But so far, we have only visualized the data set. This section goes a step further and uses statistical methods to predict a song’s popularity as accurately as possible.</p>
 <p>To compare your models, you will use a uniform metric to check the predictions for accuracy. In your case, this is the Root Mean Square Error (RMSE), i.e., the root of the average squared difference between the predicted (<span class="math inline">\(\hat{y}_i\)</span>) and the actual value (<span class="math inline">\(y_i\)</span>) :</p>
 <p><span class="math display">\[ RMSE = \sqrt{\frac{1}{N}\sum_{i=1}^{N}{(\hat{y}_i-y_i)^2}} \]</span></p>
 <p>The closer the <span class="math inline">\(RMSE\)</span> is to 0, the better your model predicts prices. Therefore, in the following section, your goal is to reduce the <span class="math inline">\(RMSE\)</span> of your various models as much as possible through continuous improvements.</p>
@@ -186,7 +186,7 @@
 </div>
 <div id="examine-the-correlation-between-the-variables-train" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Examine the Correlation Between the Variables (train)</h2>
-<p>How are the individual variables related to each other? In other words, to what extent do the variables in the data set correlate with one another? Finding this out is extremely important for deciding which model specification to use later. A good place to start is to create a correlation matrix:</p>
+<p>How are the individual variables related to each other? In other words, to what extent do the variables in the data set correlate with one another? Finding this out is vital for deciding which model specification to use later. A good place to start is to create a correlation matrix:</p>
 <div class="tips r">
 <p>Use the <code>cor()</code> function from the {base} R to create a correlation matrix. Select all numerical variables in your data set with the help of <code>sapply()</code> or {dplyr}’s <code>select()</code> and create a correlation matrix.</p>
 <p>Alternatively, use the <code>ggcorrplot()</code> from the same-name <a href="https://cran.r-project.org/package=ggcorrplot">{ggcorrplot}</a> package.</p>
@@ -202,7 +202,7 @@
 <p>Now you can make use of your statistical knowledge. You will need a method with which you can predict the popularity of a Spotify song.</p>
 <p>Have you ever heard of linear regression? Now you can use your statistics skills. First, set up a model with popularity as the dependent variable. In the previous exercise, you examined different variables. Now choose the variable with the highest correlation to popularity and use that as the only independent variable.</p>
 <p>For example, your first regression model could look like this:</p>
-<p><span class="math display">\[popularity = \beta_0 + \beta_1 \cdot danceability \]</span></p>
+<p><span class="math display">\[ popularity = \beta_0 + \beta_1 \cdot danceability \]</span></p>
 <div class="tips r">
 <p>In R, you can implement a simple linear regression with the <code>lm()</code> function. You then get the model summary with the <code>summary()</code> function.</p>
 <p>Alternatively, check <a href="https://vincentarelbundock.github.io/modelsummary/">{modelsummary}</a> or <a href="https://www.jakeruss.com/cheatsheets/stargazer/">{stargazer}</a> package to pretty-print the results of your regression model(s).</p>
@@ -213,9 +213,9 @@
 <p>Import LinearRegression() from sklear.linear_model and train your model using LinearRegression().fit().</p>
 </div>
 <p>Does your independent variable has a statistically significant impact on popularity? Probably yes, because we selected the variable most correlated with popularity. However, if we stick to this very simplified model, we make a typical mistake: the so-called Omitted Variable Bias (OVB). To put it simply, we neglect (in statistics jargon: “do not control for”) variables that have a significant influence on the dependent variable. One could suspect that other influencing factors also play an important role in estimating a song’s popularity. If we do not include them, the estimate of the effect of, e.g., danceability, is biased and hardly helpful. In our case, this is not a big problem for the time being since we are not interested in causal effects but rather in the best possible prediction. Your statistics professor would almost certainly object to such a model. Nonetheless, with just a single explanatory variable, this model will not necessarily predict the popularity well.</p>
-<p>One possible solution is simply to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:
-<span class="math display">\[popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy\]</span>
-Now compare the results of these two models. Does the larger model explain a higher proportion of the variance in popularity? In other words, which model shows the higher value for the <span class="math inline">\(R^2\)</span> measure?</p>
+<p>One possible solution is to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:</p>
+<p><span class="math display">\[ popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy \]</span></p>
+<p>Now compare the results of these two models. Does the larger model explain a higher proportion of the variance in popularity? In other words, which model shows the higher value for the <span class="math inline">\(R^2\)</span> measure?</p>
 <div class="tips r">
 <p>Use the <code>summary()</code> function of your model to compare the two models. Which model shows a higher value for <span class="math inline">\(R^2\)</span>? Then you can compare the RMSE between your two models.</p>
 </div>

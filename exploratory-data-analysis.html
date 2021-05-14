@@ -170,14 +170,16 @@
 <p><strong>Download your personal Spotify data</strong></p>
 <p>If you do not use Spotify personally, you can skip this step and start with chapter 4.1.
 In chapter 4.5, we will use the requested personal Spotify data, and you can use the data from one of your team members. If nobody on your team uses Spotify, we will provide you with some dummy data.</p>
-<p>We will follow eight steps based on <a href="https://www.makeuseof.com/tag/download-privacy-data-spotify/">this</a> blog post by Dan Price to download your personal Spotify data:
-1. Go to <a href="https://accounts.spotify.com/en/status" class="uri">https://accounts.spotify.com/en/status</a> and enter your login credentials.
-2. In the menu on the screen’s left-hand side, click on Privacy settings.
-3. Scroll down to the Download your data section. You will see the following:</p>
+<p>We will follow eight steps based on <a href="https://www.makeuseof.com/tag/download-privacy-data-spotify/">this</a> blog post by Dan Price to download your personal Spotify data:</p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://accounts.spotify.com/en/status" class="uri">https://accounts.spotify.com/en/status</a> and enter your login credentials.</li>
+<li>In the menu on the screen’s left-hand side, click on Privacy settings.</li>
+<li>Scroll down to the Download your data section. You will see the following:</li>
+</ol>
 <p><img src="splots/spotify.PNG" width="100%" style="display: block; margin: auto;" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Click on <em>Request</em>. You will probably have to complete a captcha and will receive a confirmation email.</li>
-<li>Click “Confirm” in the email. This confirmation will take you back to Spotify, where you will receive an on-screen notification saying:“We are preparing your data file. This [process] can take up to 30 days to complete. You’ll receive an email when it is ready to download.” - Spotify</li>
+<li>Click “Confirm” in the email. This confirmation will take you back to Spotify, where you will receive an on-screen notification saying: “We are preparing your data file. This [process] can take up to 30 days to complete. You’ll receive an email when it is ready to download.” - Spotify</li>
 <li>When the data preparation is complete, return to Privacy settings; you will now have access to Step 3.</li>
 <li>Click on Download.</li>
 </ol>
@@ -186,15 +188,15 @@ In chapter 4.5, we will use the requested personal Spotify data, and you can use
 <div id="getting-started" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Getting Started</h2>
 <p>In this chapter, you will apply the knowledge that you gained throughout the semester to real-world data. The exercises will cover typical problems that you usually encounter when analyzing data.</p>
-<p>Before you can dive into the data, set up your programming environment. This will be the place where the magic happens – all your coding will take place there.</p>
+<p>Before you can dive into the data, set up your programming environment. This environment will be the place where the magic happens – all your coding will take place there.</p>
 <div class="tips r">
-<p>In your workspace on <a href="https://rstudio.cloud/projects">rstudio.cloud</a>, we have already uploaded an “assignment” for you (Template Spotify). When you create a new project within the workspace <em>Class of ’21 | TechAcademy | Data Science with R</em>, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into a PDF document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!</p>
+<p>In your workspace on <a href="https://rstudio.cloud/projects">rstudio.cloud</a>, we have already uploaded an “assignment” for you (Template Spotify). When you create a new project within the workspace <em>Class of ’21 | TechAcademy | Data Science with R</em>, your workspace will open up. We’ve already made some arrangements for you: The data sets you will be working with throughout the project are already available in your working directory. We also created an ‘RMarkdown’ file, with which you will be able to create a detailed report of your project. You can convert this file into an HTML document when you have completed the documentation. Open the file “Markdown_Spotify.Rmd” and see for yourself!</p>
 </div>
 <div class="tipsp python">
 <p>We recommend using <a href="https://colab.research.google.com">Google Colab</a> for this project since it requires no particular setup, stores its notebooks to your Google Drive, and makes it easy for you to share them with your team members.</p>
 <p>As an alternative to Google Colab, you might want to install Jupyter Notebook locally using the Anaconda distribution.
-Either way, when importing Spotify data, you can use the links to the respective data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.</p>
-<p>We will give you a more detailed step by step demo during the first coding meetup.</p>
+Either way, when importing Spotify data, you can use the links to the separate data files provided in the “Data-Links” document, which you will find in the TechAcademy drive.</p>
+<p>We will give you a more detailed step-by-step demo during the first coding meetup.</p>
 </div>
 <div id="importing-data" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Importing Data</h3>
@@ -203,7 +205,7 @@ Either way, when importing Spotify data, you can use the links to the respective
 <li><a href="https://drive.google.com/uc?export=download&amp;id=1OmFrdUaPFatpPLRikLJHS-VoF1F27G73">spotify_songs.csv</a></li>
 <li><a href="https://drive.google.com/uc?export=download&amp;id=1gHO566_qxBbz7t8fcH10uVQDAmxK33IF">song_features.csv</a></li>
 </ul>
-<p>How is the data structured, and which variables does it contain? To get a peek at the data you’ll be working with, output the first/last few rows.Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.</p>
+<p>How is the data structured, and which variables does it contain? To get a peek at the data you’ll be working with, output the first/last few rows. Also, compute some basic descriptive statistics (count, mean, and standard deviation) and determine the column’s data types.</p>
 <div class="tips r">
 <p>First, the data set has to be loaded from your folder structure into the workspace. Import both the <code>song_features.csv</code> and the <code>spotify_songs.csv</code> data sets into your workspace (e.g., using {base} R’s <code>read.csv()</code>, <a href="https://readr.tidyverse.org">{readr}</a>’s <code>read_csv()</code> or <a href="https://rdatatable.gitlab.io/data.table/">{data.table}</a>’s <code>fread()</code> function) and name the object(s) accordingly.</p>
 <p>Though you can name the object however you wish, we recommend using <code>original_file_name</code> + e.g., <code>_df</code> (for data.frame) / <code>_tbl</code>(for tibble) / <code>_DT</code> (for data.table) naming convention, so that you can easily distinguish your R objects (data frames, plots, vectors, etc.) later on.</p>
@@ -224,7 +226,7 @@ You can use the same panda’s method you used to import CSV data from your loca
 </div>
 <div id="convert-milliseconds-to-minutes" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Convert Milliseconds to Minutes</h3>
-<p><strong>We will start with the data set “spotify_songs.csv.”</strong></p>
+<p><strong>We will start with the data set <code>spotify_songs.csv</code>.</strong></p>
 <p>You might have noticed a column with song durations given in milliseconds from the task before. Since (presumably) no one measures song durations in milliseconds, convert them into minutes.</p>
 <div class="tips r">
 <p>You could use <a href="https://dplyr.tidyverse.org/index.html">{dplyr}</a>’s <code>mutate</code> function to compute and add a new column <code>duration_min</code> using the existing column <code>duration_ms</code>. If you haven’t heard of the {dplyr} package yet, take the respective <a href="https://www.datacamp.com/courses/data-manipulation-with-dplyr">DataCamp course</a> and the DataCamp’s course on <a href="https://www.datacamp.com/courses/exploratory-data-analysis">Exploratory Data Analysis</a>. Use the respective function and add the new variable to your existing data set.</p>
@@ -319,7 +321,7 @@ The official documentation of the Pandas library provides a great guide on how t
 </div>
 <div id="line-plot" class="section level3" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Line Plot</h3>
-<p>Your goal for this task is to plot how ‘acousticness,’ ‘danceability,’ ‘energy,’ ‘valence,’ ‘speechiness,’ and ‘instrumentalness’ changed over time.</p>
+<p>Your goal for this task is to plot how <code>acousticness</code>, <code>danceability</code>, <code>energy</code>, <code>valence</code>, <code>speechiness</code>, and <code>instrumentalness</code> changed over time.</p>
 <div class="tips r">
 <p>This task involves three steps: creating a summarized data set, reshaping that data set from wide to long format if you’d like to use {ggplot2} and finally – plotting it.</p>
 <p>Use the familiar <code>group_by()</code> and <code>summarise()</code> {dplyr} verbs for the first part of the task. Unlike before, include multiple columns in your data summary. Use the familiar <code>mean()</code> function on each column to summarize the data. Save the resulting data summary as a new object.</p>
@@ -327,7 +329,7 @@ The official documentation of the Pandas library provides a great guide on how t
 <p>Use the {ggplot2} to create a line chart of six variables for this task’s final step. Alternatively, use the {base} R’s <code>plot()</code>.</p>
 </div>
 <div class="tipsp python">
-<p>Once again, group the entries by year, get the mean values for the respective column for all years and use matplotlibs’ pyplot for plotting.
+<p>Once again, group the entries by year, get the mean values for the respective column for all years, and use matplotlibs’ pyplot for plotting.
 Don’t forget to add a legend and axis labels to the plot.</p>
 </div>
 <p><img src="splots/features_over_time.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -336,7 +338,7 @@ Don’t forget to add a legend and axis labels to the plot.</p>
 <h3><span class="header-section-number">4.2.4</span> Radar Plot (Advanced)</h3>
 <p><strong>If you are on an advanced track, do this exercise; otherwise, you can skip it.</strong></p>
 <p>Let’s get a little fancy by displaying the yearly average song feature values through an interactive radar chart (aka spider plot or polar plot). This chart is very favorable in some cases when you try to display more than two dimensions. Here, each column (or dimension) gets its axis, and the dots on each axis are connected, resulting in a polygon shape.</p>
-<p>The features you’ll need to plot are: ‘acousticness,’ ‘danceability,’ ‘energy,’ ‘valence,’ ‘speechiness,’ and ‘instrumentalness.’</p>
+<p>The features you’ll need to plot are: <code>acousticness</code>, <code>danceability</code>, <code>energy</code>, <code>valence</code>, <code>speechiness</code>, and <code>instrumentalness</code>.</p>
 <div class="tips r">
 <p>Use the <a href="https://plotly.com/r/getting-started/">{plotly}</a> package to create an interactive Radar/Spider chart of six columns over time. Similar to task 2.3 before, this task will involve summarizing, transforming, and plotting the data.</p>
 <p>You are now already experienced in summarizing the data with, e.g., <code>group_by()</code> and <code>summarise()</code> {dplyr} verbs. Focus on summarizing the six columns.</p>
@@ -349,16 +351,9 @@ Don’t forget to add a legend and axis labels to the plot.</p>
 <p>Use the already computed data frame with average feature values for each year. Note that after you grouped the data frame, the <code>year</code> column automatically has been set to be the index column – reverse that (i.e., “reset” the index).
 Then apply the <code>.melt("year")</code> method on the data frame and have a look at the result. Before continuing, briefly try to understand what happened.</p>
 <p>Done that, you can create the radial plot with the <code>px.line_polar(...)</code> method. The documentation (google something like “plotly express radar chart” to find the documentation) tells you which arguments you need (and can) pass to this method:
-<ul>
-  <li>
-    Of course, you need to pass some value for the <code>data_frame</code> argument. For our purpose, this will be the melted data frame.
-  </li>
-  <li>
-    You’ll also need to pass values for the keyword arguments <code>r</code>, <code>theta</code>, <code>animation_frame</code>, <code>line_close</code>, and <code>range_r</code>.
-    The values for these arguments are the strings <code>“value”</code>, <code>“variable”</code>, <code>“year”</code>, the boolean value <code>True</code>, and the tuple <code>(0,1)</code> respectively.
-  </li>
-</ul>
-</p>
+- Of course, you need to pass some value for the <code>data_frame</code> argument. For our purpose, this will be the melted data frame.
+- You’ll also need to pass values for the keyword arguments <code>r</code>, <code>theta</code>, <code>animation_frame</code>, <code>line_close</code>, and <code>range_r</code>.
+The values for these arguments are the strings <code>“value”</code>, <code>“variable”</code>, <code>“year”</code>, the boolean value <code>True</code>, and the tuple <code>(0,1)</code> respectively.</p>
 <p>Apply <code>.show()</code> directly after the <code>line_polar(...)</code> method to display the plot.</p>
 <p>As always, try updating font size, layout, etc., as you like.</p>
 </div>
@@ -462,7 +457,7 @@ Until now, we loaded CSV-Files with the pandas method:
 <code>pd.read_csv(file)</code>
 So, what pandas method could you use to load JSON files ;) ?</p>
 </div>
-<p>After you loaded the file into your environment, take some time to first look at the data. Print out a couple of rows and look at what columns this data set contains. It could be helpful again to compute a column “minutesPlayed” from the column “msPlayed.”
+<p>After you loaded the file into your environment, take some time to first look at the data. Print out a couple of rows and look at what columns this data set contains. It could be helpful again to compute a column <code>minutesPlayed</code> from the column <code>msPlayed</code>.
 Afterward, you can create a graph with the artists you listened to the most.</p>
 <div class="tips r">
 <p>You could add a variable to your personal Spotify data set which counts the number of times you listened to a particular song. Take advantage, e.g., of {dplyr}’s <code>mutate()</code> verb. Name the new variable, for example <code>n_times_song_played</code>.</p>
