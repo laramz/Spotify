@@ -202,7 +202,7 @@
 <p>Now you can make use of your statistical knowledge. You will need a method with which you can predict the popularity of a Spotify song.</p>
 <p>Have you ever heard of linear regression? Now you can use your statistics skills. First, set up a model with popularity as the dependent variable. In the previous exercise, you examined different variables. Now choose the variable with the highest correlation to popularity and use that as the only independent variable.</p>
 <p>For example, your first regression model could look like this:</p>
-<p><span class="math display">\[ popularity = \beta_0 + \beta_1 \cdot danceability \]</span></p>
+<p><span class="math display">\[ popularity = \beta_0 + \beta_1 \cdot danceability + \epsilon \]</span></p>
 <div class="tips r">
 <p>In R, you can implement a simple linear regression with the <code>lm()</code> function. You then get the model summary with the <code>summary()</code> function.</p>
 <p>Alternatively, check <a href="https://vincentarelbundock.github.io/modelsummary/">{modelsummary}</a> or <a href="https://www.jakeruss.com/cheatsheets/stargazer/">{stargazer}</a> package to pretty-print the results of your regression model(s).</p>
@@ -214,7 +214,7 @@
 </div>
 <p>Does your independent variable has a statistically significant impact on popularity? Probably yes, because we selected the variable most correlated with popularity. However, if we stick to this very simplified model, we make a typical mistake: the so-called Omitted Variable Bias (OVB). To put it simply, we neglect (in statistics jargon: “do not control for”) variables that have a significant influence on the dependent variable. One could suspect that other influencing factors also play an important role in estimating a song’s popularity. If we do not include them, the estimate of the effect of, e.g., danceability, is biased and hardly helpful. In our case, this is not a big problem for the time being since we are not interested in causal effects but rather in the best possible prediction. Your statistics professor would almost certainly object to such a model. Nonetheless, with just a single explanatory variable, this model will not necessarily predict the popularity well.</p>
 <p>One possible solution is to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:</p>
-<p><span class="math display">\[ popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy \]</span></p>
+<p><span class="math display">\[ popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy + \epsilon  \]</span></p>
 <p>Now compare the results of these two models. Does the larger model explain a higher proportion of the variance in popularity? In other words, which model shows the higher value for the <span class="math inline">\(R^2\)</span> measure?</p>
 <div class="tips r">
 <p>Use the <code>summary()</code> function of your model to compare the two models. Which model shows a higher value for <span class="math inline">\(R^2\)</span>? Then you can compare the RMSE between your two models.</p>

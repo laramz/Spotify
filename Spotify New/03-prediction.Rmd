@@ -58,7 +58,7 @@ Have you ever heard of linear regression? Now you can use your statistics skills
  
 For example, your first regression model could look like this:
 
-$$ popularity = \beta_0 + \beta_1 \cdot danceability $$
+$$ popularity = \beta_0 + \beta_1 \cdot danceability + \epsilon $$
  
  
 :::: {.tips .r data-latex="r"}
@@ -82,7 +82,7 @@ Does your independent variable has a statistically significant impact on popular
  
 One possible solution is to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:
 
-$$ popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy $$
+$$ popularity = \beta_0 + \beta_1 \cdot danceability + \beta_2 \cdot energy + \epsilon  $$
 
 Now compare the results of these two models. Does the larger model explain a higher proportion of the variance in popularity? In other words, which model shows the higher value for the $R^2$ measure?
  
