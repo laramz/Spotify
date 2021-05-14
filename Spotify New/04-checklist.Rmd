@@ -32,7 +32,7 @@ This checklist should help you keeping track of your exercises. Remember that yo
 
 3.1 Bar plot with artists with most songs
 
-3.2 Map with top songs in each country
+3.2 For Advanced: Map with top songs in each country
 
 4. **Pairplot: Artist Comparison**
 
