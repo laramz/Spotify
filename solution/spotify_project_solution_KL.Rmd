@@ -1,0 +1,823 @@
+---
+title: "Spotify Data Analysis in R"
+author: "Karlo Lukic"
+date: "`r format(Sys.time(), '%d/%m/%y')`"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    highlight: zenburn
+    df_print: kable
+    theme: default
+    toc_depth: 4
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=F}
+knitr::opts_chunk$set(
+  echo = T, comment = "", warning = F, message = F,
+  # added for better plot rendering in HTML output
+  # alternatively, change each base_size to e.g. 12
+  # more info: https://benjaminlouis-stat.fr/en/blog/2020-05-21-astuces-ggplot-rmarkdown/
+  fig.width = 6,
+  fig.asp = 0.8,
+  out.width = "80%"
+)
+```
+
+# Packages
+
+```{r, error=F, warning=F, message=F}
+library(data.table) # wide data manipulation
+library(tidyverse) # long data manipulation
+library(stringr) # string (character) manipulation
+library(lubridate) # date manipulation
+library(ggplot2) # static data visualization
+library(GGally) # static data visualization
+library(psych) # summary statistics
+library(skimr) # summary statistics
+library(gganimate) # dynamic data visualization
+library(highcharter) # dynamic data visualization
+library(plotly) # dynamic data visualization
+library(scales) # static data visualization
+library(knitr) # tables
+library(janitor) # easy renaming of variables
+library(ggcorrplot) # correlation plot
+library(caret) # split train/test data
+library(equatiomatic) # print model equation
+library(stargazer) # classic to describe models
+library(modelsummary) # modern to describe models
+```
+
+# Saved functions, shortcuts, variables…
+
+```{r}
+# re-write default digit/scipen print
+options(digits = 3, scipen = 10000)
+
+# save path to data folder: data_folder
+data_folder <- file.path("/Users/karlo/Google Drive/TechAcademy/Product Development/6-SoSe21/Projekt/data")
+
+# define colors: my_color
+# note: https://usbrandcolors.com/spotify-colors/
+my_color <- "#1E76B4" # matplot blue
+spotify_green <- "#1DB954"
+spotify_black <- "#191414"
+spotify_black <- "#191414"
+
+# set default ggplot2 theme:
+# theme_set(theme_minimal(base_size = 8))
+
+# set default ggplot2 coloring scale
+# options(ggplot2.continuous.colour="viridis")
+
+# set defualt ggplot2 font sizes (smaller images)
+# theme_set(theme(text = element_text(size = 10)))
+# theme_set(theme_classic(base_size = 5))
+# theme_set(theme_minimal(base_size = 5))
+# theme_set(theme_gray(base_size = 5))
+
+# ggplot2 shortcuts
+center_title <- theme(plot.title = element_text(hjust = 0.5))
+
+# define line separator for a table: std_line
+# std_line = officer::fp_border(color="black", width = 1)
+
+# default DT options
+options(DT.options = list(pageLength = 5, dom = "t"))
+```
+
+# Part A: Exploratory Data Analysis (Beginners + Advanced)
+
+## Data: Kaggle Data
+
+### 1. Getting Started
+
+#### 1.1. Read in data, show data, give summary of data (mean, count, ...)
+
+```{r, results="asis"}
+# load song_features.csv: spotify_song_features_DT
+spotify_song_features_DT <- fread("data/song_features.csv", drop = "V1")
+head(spotify_song_features_DT)
+```
+
+
+```{r}
+# load spotify_songs.csv: spotify_songs_DT
+spotify_songs_DT <- fread("data/spotify_songs.csv", drop = "V1")
+head(spotify_songs_DT)
+```
+
+
+```{r}
+glimpse(spotify_song_features_DT)
+```
+
+```{r}
+glimpse(spotify_songs_DT)
+```
+
+```{r}
+describe(spotify_song_features_DT, 
+  quant=c(.25, .75), # add quantiles
+  skew = F # omit skeweness and kurtosis
+)
+```
+```{r, eval=F, include=F}
+# alternatively via {skimr}
+skim(spotify_song_features_DT)
+```
+
+
+#### 1.2. Compute column `duration_minutes` from `duration_ms`
+
+
+```{r}
+# convert duration in ms to sec: 1 sec = 1,000 ms
+# note: knitr does not like "in place modification"
+spotify_songs_DT <- spotify_songs_DT[, duration_sec := duration_ms / 1000]
+
+# convert duration from sec to min: 1 min = 60 ms
+spotify_songs_DT <- spotify_songs_DT[, duration_min := duration_sec / 60]
+
+# reveal changes
+spotify_songs_DT[1:6, .(name, duration_ms, duration_sec, duration_min)]
+```
+
+#### 1.3. Compute mean/std of `duration_minutes`, which song has the longest duration?
+
+```{r}
+spotify_songs_DT[, .(mean_duration_min = mean(duration_min), 
+                     sd_duration_min = sd(duration_min))]
+```
+
+
+```{r}
+spotify_songs_DT[max(duration_min), .(duration_min, artists, name)]
+```
+
+
+#### 1.4. Plot histogram of song durations in seconds
+
+
+```{r}
+p <- ggplot(spotify_songs_DT, aes(duration_sec)) + 
+  geom_histogram(bins = 800, color = spotify_green) +  # bins = 800 => produces similar image as matplotlib
+  coord_cartesian(xlim = c(0,1000)) + # range of 0-1000 (without removing the values)
+  labs(title = "Histogram of song duration",
+       x = "song duration (sec.)") +  # remove x-, y-axis labels
+  center_title
+p
+
+# interactive?
+# ggplotly(p, tooltip = "x")
+```
+
+### 2. Time Series: How did songs change over the years?
+
+#### 2.1. Streaming leads to shorter songs? Group-By: song duration over years
+
+
+```{r, message=F}
+# data.table
+avg_song_duration_DT <- spotify_songs_DT[, .(mean_duration_min = mean(duration_min)), by=year]
+
+# tidyverse
+avg_song_duration_tbl <- spotify_songs_DT %>% 
+  group_by(year) %>% 
+  summarise(mean_duration_min = mean(duration_min))
+
+# plot it
+p <- ggplot(avg_song_duration_tbl, aes(year, mean_duration_min)) + 
+  geom_line(col = spotify_green) + 
+  labs(title = "Development of song duration over time", 
+       x = "", y = "duration (min)") +
+  theme_classic() + 
+  center_title
+p
+
+# interactive?
+# ggplotly(p)
+```
+
+#### 2.2. Merge songs with song_features on id
+
+```{r}
+# data.table: spotify_DT
+spotify_DT <- spotify_songs_DT[spotify_song_features_DT, on = .(id)]
+
+# tidyverse: spotify_tbl
+spotify_tbl <- spotify_songs_DT %>% 
+  left_join(spotify_song_features_DT, by="id") %>% 
+  as_tibble()
+
+# reveal
+glimpse(spotify_DT)
+```
+
+
+#### 2.3. Compare how features like `acousticness`, `danceability`, `energy`, `valence`, `speechiness`, and `instrumentalness` changed over time
+
+
+```{r}
+# data.table: features_DT
+features_DT <- spotify_DT[, lapply(.SD, mean), 
+           .SDcols = c("acousticness", "danceability", "energy", "instrumentalness"), 
+           by = year]
+
+# reshape to long format: features_long_DT
+features_long_DT <- melt(features_DT, id.vars = "year", 
+     measure.vars = c("acousticness", "danceability", "energy", "instrumentalness"))
+
+# tidyverse: features_tbl
+features_tbl <- spotify_tbl %>% 
+  group_by(year) %>% 
+  summarise_at((c("acousticness", "danceability", "energy", "instrumentalness")), mean)
+
+# reshape to long format: features_long_tbl
+features_long_tbl <- features_tbl %>% 
+  gather(acousticness, danceability, energy, instrumentalness, key = "variable", value = "value")
+
+# plot
+p <- ggplot(features_long_tbl, aes(year, value, color=variable)) + 
+  geom_line() + 
+  labs(title = "Music features over time", x = "", y = "") + 
+  theme_bw() + 
+  theme(legend.title = element_blank(),
+        # legend.position = c(.89, .84),
+        # legend.box.background = element_rect(colour = "black"),
+        # legend.text = element_text(size = 7)
+        ) +
+  center_title + 
+  scale_color_brewer(palette="Dark2") # change colors
+p
+
+
+# interactive?
+# ggplotly(p)
+```
+
+#### 2.4. For Advanced: Radar plot (aka spider plot or polar plot) over time
+
+
+```{r, eval=T}
+# subset data: spider_DT
+spider_DT <- spotify_DT[, .(year, valence, acousticness, danceability, energy, speechiness, instrumentalness)]
+
+# convert tempo to var between 0-1
+# spider_DT[, tempo := tempo / max(tempo)]
+
+# group by release_year, get means of: 'acousticness', 'danceability', 'energy', 'tempo', 'speechiness', 'instrumentalness' 
+spider_DT <- spider_DT[, lapply(.SD, mean), 
+   .SDcols = c('acousticness', 'danceability', 'energy', 'valence', 'speechiness', 'instrumentalness'),
+   by = "year"]
+
+# melt DT
+spider_DT <- melt(spider_DT, id.vars = "year")
+
+# final plot
+fig <- spider_DT %>%
+  plot_ly(
+    type = 'scatterpolar', 
+    mode = "markers", # avoid warning
+    r = ~value,
+    theta = ~variable,
+    fill = 'toself',
+    frame = ~year,
+    marker = list(color = spotify_green)
+  )
+fig <- fig %>%
+  layout(title = 'Development of Selected Features Over Time<br>', # title?
+         polar = list(
+           radialaxis = list(
+             visible = T, 
+             range = c(0,1)
+           )
+         ),
+         showlegend = F
+  )
+fig <- fig %>% 
+  animation_opts(
+    frame = 120, easing = "elastic" # faster transition
+  )
+
+fig
+```
+
+
+
+### 3. Artists
+
+#### 3.1. Bar plot with artists with most songs
+
+```{r}
+# data.table: artists_DT
+artists_DT <- spotify_DT[, .N, by=artists][order(N, decreasing = T)][1:15]
+
+# tidyverse: artists_tbl
+artists_tbl <- spotify_tbl %>% 
+  group_by(artists) %>% 
+  count(sort = T) %>% 
+  head(15)
+
+# plot
+p <- ggplot(artists_tbl) +
+    aes(x = reorder(artists, n), weight = n) +
+    geom_bar(fill = spotify_green) +
+    labs(x = "", y = "", 
+         title = "15 artists with most songs") +
+    coord_flip() +
+    theme_classic() + 
+    center_title
+p
+
+# interactive?
+# ggplotly(p, tooltip = "n")
+```
+
+
+#### 3.2. For Advanced: Map with top songs in each country
+
+```{r}
+# prepare data: weekly_charts_DT
+weekly_charts_DT <- fread("data/weekly_charts.csv", drop = "V1")
+
+# rename all vars snakecase
+weekly_charts_DT <- weekly_charts_DT %>% 
+  rename_with(~ tolower(gsub(" ", "_", .x, fixed = TRUE)))
+
+# get each country's top song
+top_song_by_country_tbl <- weekly_charts_DT %>%
+  group_by(country) %>%
+  filter(position == 1)
+
+# add three-letter ISO code
+iso_3_DT <- fread("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv",
+                  select = c("name", "alpha-2", "alpha-3"), 
+                  col.names = c("country_name", "country", "iso_3"))
+# iso_3_DT
+
+# join
+top_song_by_country_tbl <- top_song_by_country_tbl %>% 
+  left_join(iso_3_DT, by = "country")
+
+# country to country-color-id
+top_song_by_country_tbl <- top_song_by_country_tbl %>% 
+  mutate(country_id = as_factor(country)) %>% 
+  # to unique ID
+  mutate(country_id = as.numeric(country_id)) 
+
+# color boundaries between countries
+l <- list(color = toRGB("white"), width = 0.5)
+
+# specify map projection/options
+# note: goes into layout() in next step
+g <- list(
+  showframe = F,
+  showcoastlines = T,
+  coastlinecolor = toRGB("gray90"),
+  showland = T,
+  landcolor = toRGB("grey90"),
+  projection = list(type = 'Mercator')
+)
+
+# plot
+top_song_by_country_tbl %>% 
+  plot_ly(type = "choropleth", 
+          # ISO 3 code column
+          locations = ~ iso_3, 
+          # color by id
+          z = ~country_id,
+          # text on hover
+          text = paste0("Top Song in ", 
+                        top_song_by_country_tbl$country_name, 
+                        " was \"", 
+                        top_song_by_country_tbl$track_name, 
+                        "\" by ", 
+                        top_song_by_country_tbl$artist),
+          hoverinfo = 'text', 
+          # colorscale='Rainbow',
+          reversescale = T,
+          marker = list(line = l)) %>% 
+  # hide id legend
+  hide_colorbar() %>%
+  # layout options
+  layout(title = "Top Spotify Song per Country", 
+         geo = g)
+```
+
+### 4. Pairplot: Artist Comparison
+
+#### 4.1. Look for three different artists and compare the features of the songs with a pairplot
+
+```{r, message=F}
+# TODO: 
+# data.table
+# subset 3 artists and 4 features: acousticness, danceability,instrumentalness,liveness
+spotify_subset_DT <- spotify_DT[
+  artists %in% c("Bob Dylan", "Nirvana", "Eminem"),
+  .(acousticness, danceability, instrumentalness, liveness, artists
+  )
+]
+
+# tidyverse
+spotify_subset_tbl <- spotify_DT %>%
+  filter(artists %in% c("Bob Dylan", "Nirvana", "Eminem")) %>%
+  select(acousticness, danceability, instrumentalness, liveness, artists)
+
+# plot
+p <- ggpairs(spotify_subset_tbl, 
+        columns = 1:4, 
+        title = "Pairplot of 3 Artists",
+        aes(col=artists), 
+        progress = F, # no need for progress bar
+        legend = 1, 
+        # better aesthetics
+        diag = list(continuous = wrap("densityDiag", alpha=0.3), combo = "facetdensity"),
+        upper = list(continuous = wrap("points", alpha = .3, size = .8)),
+        lower = list(continuous = wrap("points", alpha = .3, size = .8))
+) + 
+  center_title
+p
+```
+
+#### 4.2. Look at the proposed gallery and look for a plot that you could use to visualize an aspect of the Spotify data and generate a plot
+
+* Go to [r-graph-gallery](https://www.r-graph-gallery.com/index.html) look for a plot which could be used to visualize an aspect of the Spotfiy data and generate a plot
+* e.g. [Loudness war](https://en.wikipedia.org/wiki/Loudness_war)
+
+```{r, eval=T, include=T}
+# start with static plot: p
+p <- spotify_DT[, .(avg_loudness = mean(loudness)), by=year] %>% 
+  ggplot(., aes(x=year, y=avg_loudness)) + 
+  geom_line(color = spotify_green) + 
+  labs(y = "average loudness of songs", x = "", title = "Illustration of loudness wars",
+       caption = "Notes: Peak reached in 2008 with Metallica's Death Magnetic album.") +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  theme_bw() +
+  center_title
+p
+```
+
+
+#### 4.3. What is the message of your plot? What does it show?
+
+* Increase in loudness of songs over the time-span
+
+## Data: Personal Spotify Data
+
+```{r}
+# load data: personal_spotify_DT
+personal_spotify_DT <- fread("data/personal_data.csv") %>% 
+  janitor::clean_names()
+personal_spotify_DT[1:6]
+```
+
+
+## 5.1. Data preparation
+
+```{r}
+# convert end_time to date_time (dt) var: end_time_dt
+class(personal_spotify_DT$end_time) # char
+personal_spotify_DT <- personal_spotify_DT[, end_time_dt := ymd_hm(end_time)]
+class(personal_spotify_DT$end_time_dt) # POSIXct, POSIXt
+```
+
+```{r}
+# split end_time_dt to multiple cols: year, month, day, hour, minute …
+personal_spotify_DT <- personal_spotify_DT[, `:=`(year_int = year(end_time_dt),
+                  month_int = month(end_time_dt),
+                  month_long_char = month(end_time_dt, label=T, abbr=F),
+                  day_int = day(end_time_dt),
+                  # note: add week day just for fun
+                  weekday_int = wday(end_time_dt),
+                  weekday_long_char = wday(end_time_dt, label=T, abbr=F),
+                  hour_int = hour(end_time_dt),
+                  minute_int = minute(end_time_dt))]
+personal_spotify_DT[1:6]
+```
+
+```{r}
+# convert ms_played to min_played: min = sec / 60
+# note: duration is always expressed in seconds
+personal_spotify_DT <- personal_spotify_DT[, min_played_int := (ms_played / 1000 / 60)]
+```
+
+
+```{r}
+# create a date var (useful for time-series): date_dt
+personal_spotify_DT <- personal_spotify_DT[, date_dt := make_datetime(year_int, month_int, day_int)]
+```
+
+
+```{r}
+# create song counter dummy variable
+personal_spotify_DT <- personal_spotify_DT[, played_song_int := 1L]
+```
+
+
+```{r}
+# convert some chars to factors: {varname}_fct
+glimpse(personal_spotify_DT)
+personal_spotify_DT <- 
+  personal_spotify_DT[, `:=`(artist_name_fct = as_factor(artist_name),
+                  track_name_fct = as_factor(track_name),
+                  month_long_fct = as_factor(month_long_char),
+                  weekday_long_fct = factor(weekday_long_char, # needs re-level due to ggplot2 defaults
+                                            levels = c( "Monday", "Tuesday",
+                                                        "Wednesday", "Thursday", 
+                                                        "Friday", "Saturday", 
+                                                        "Sunday")))]
+glimpse(personal_spotify_DT)
+```
+
+
+```{r}
+# assign each track a unique ID
+# note: useful for finding top songs
+personal_spotify_DT <- 
+  personal_spotify_DT[, song_id_int := .GRP, by=track_name]
+personal_spotify_DT[1:6, .(song_id_int, track_name)]
+```
+
+```{r}
+# assign each track number of times it was played
+# note: useful for finding top songs
+personal_spotify_DT[, n_times_song_played_int := .N, by = track_name]
+personal_spotify_DT[1:6, .(track_name, n_times_song_played_int)]
+```
+
+
+```{r}
+# add 4 subsets for a day via: https://learnersdictionary.com/qa/parts-of-the-day-early-morning-late-morning-etc
+# create a new var: time_of_day_fct
+# morning (05:00-11:59), afternoon (12:00-16:59), evening (17:00-20:59), night (21:00-04:59)
+morning_char_vec <- "morning (5-11h)"
+afternoon_char_vec <- "afternoon (12-16h)"
+evening_char_vec <- "evening (17-20h)"
+night_char_vec <- "night (21-4h)"
+# personal_spotify_DT[, .(end_time, hour_int, minute_int)]
+personal_spotify_DT <- personal_spotify_DT[hour_int %between% c(5, 11), time_of_day_char := morning_char_vec]
+personal_spotify_DT <- personal_spotify_DT[hour_int %between% c(12, 16), time_of_day_char := afternoon_char_vec]
+personal_spotify_DT <- personal_spotify_DT[hour_int %between% c(17, 20), time_of_day_char := evening_char_vec]
+personal_spotify_DT <- personal_spotify_DT[hour_int %between% c(21, 23), time_of_day_char := night_char_vec]
+personal_spotify_DT <- personal_spotify_DT[hour_int %between% c(0, 4), time_of_day_char := night_char_vec]
+personal_spotify_DT <- personal_spotify_DT[, time_of_day_fct := factor(time_of_day_char,
+                                       levels = c(morning_char_vec, afternoon_char_vec, 
+                                                  evening_char_vec, night_char_vec))]
+personal_spotify_DT[1:6, .(end_time_dt, time_of_day_fct)]
+```
+
+
+## 5.2. Generate a bar plot with top 10 artists
+
+
+```{r}
+# prepare data: top_ten_listened_artists_by_play_time_DT
+top_ten_listened_artists_by_play_time_DT <- 
+  personal_spotify_DT[, .(total_song_play_time = sum(n_times_song_played_int)), 
+                      by = .(artist_name)] %>% 
+  # reorder by most played
+  .[order(-total_song_play_time)] %>% 
+  # take the top 10
+  .[1:10] %>% 
+  # add rank
+  mutate(rank = 1:10, .before = artist_name)
+
+# plot
+p <- ggplot(top_ten_listened_artists_by_play_time_DT, 
+       aes(x = reorder(artist_name, total_song_play_time), 
+           fill = artist_name, y = total_song_play_time)) +
+ geom_bar(stat = "identity") +
+ geom_text(aes(label=format(total_song_play_time, big.mark=",")), # use format()
+           vjust=.5, hjust = 1.2, 
+           color="white", size = 3.5) +
+ scale_fill_hue() +
+ labs(y = "number of times played", x = "",
+       title = " My 10 Most Listened Artists") +
+ coord_flip() +
+ theme_minimal() +
+ theme(legend.position = "none") + 
+ center_title
+p
+
+# interactive?
+# ggplotly(p)
+```
+
+## 5.4. Visualize when you listened to music? On which days, on which times?
+
+
+```{r}
+p <- personal_spotify_DT[, .(songs_per_day = .N), by=.(date_dt, month_long_fct)] %>% 
+  ggplot(aes(as.Date(date_dt), songs_per_day, color = month_long_fct)) + 
+  geom_line(show.legend = F) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%B") +
+  labs(x = "", y = "number of listened songs",
+       title = "My Spotify listening history by day") + 
+  theme_minimal() +
+  center_title
+p
+
+# interactive?
+# ggplotly(p, tooltip = c("y"))
+```
+
+
+
+```{r}
+p <- personal_spotify_DT[, .N, by = .(date_dt, month_long_fct)] %>%  # total n songs per day
+  .[, .(mean_n_songs = mean(N)), by = month_long_fct] %>%  # mean n songs per month
+  ggplot(aes(x = month_long_fct, y = mean_n_songs, fill = month_long_fct)) +
+  geom_bar(stat = "identity", show.legend = F) + 
+  labs(x = "", y = "average number of listened songs",
+      title = "My Spotify listening history by month") +
+  theme_minimal() +
+  center_title
+p
+
+# interactive?
+# ggplotly(p, tooltip = "y")
+```
+
+
+```{r}
+p <- personal_spotify_DT[, .N, by = .(date_dt, weekday_long_fct)] %>%  # total n songs per day
+  .[, .(mean_n_songs = mean(N)), by = weekday_long_fct] %>%  # mean n songs per weekday
+  ggplot(aes(x = weekday_long_fct, y= mean_n_songs, fill = weekday_long_fct)) +
+  geom_bar(stat="identity", show.legend = F) + 
+  labs(x = "", y = "average number of listened songs",
+       title = "My Spotify listening history by weekday") +
+  theme_minimal() +
+  center_title
+p
+
+# interactive?
+# ggplotly(p, tooltip = "y")
+```
+
+
+```{r}
+p <- personal_spotify_DT[, .N, by = .(date_dt, time_of_day_fct)] %>%  # total n songs per day
+  .[, .(mean_n_songs = mean(N)), by = time_of_day_fct] %>%  # mean n songs per time-of-day
+  ggplot(aes(x= time_of_day_fct, y = mean_n_songs, fill = time_of_day_fct)) +
+  geom_bar(stat="identity", show.legend = F) + 
+  labs(x = "", y = "average number of listened songs",
+       title = "My Spotify listening history by time of day") +
+  theme_minimal() +
+  center_title
+p
+
+# interactive?
+# ggplotly(p, tooltip = "y")
+```
+
+
+```{r}
+p <- personal_spotify_DT[, .N, by = .(date_dt, month_long_fct, weekday_long_fct)] %>%  # total
+  .[, .(mean_n_songs = mean(N)), by = .(month_long_fct, weekday_long_fct)] %>%  # mean 
+  ggplot(aes(x = fct_reorder(month_long_fct, desc(month_long_fct)), # reorder
+             y = mean_n_songs, 
+             fill = weekday_long_fct)) +
+  geom_bar(stat = "identity", show.legend = T, position = "dodge") + 
+  labs(x = "", y = "average number of listened songs",
+       title = "My Spotify listening history by month and day",
+       fill = "") + 
+  coord_flip() +
+  theme_minimal() +
+  center_title
+p
+
+# interactive?
+# ggplotly(p, tooltip = "y")
+```
+
+
+```{r}
+p <- personal_spotify_DT[, .N, by = .(date_dt, weekday_long_fct, time_of_day_fct)] %>%  # total
+  .[, .(mean_n_songs = mean(N)), by = .(weekday_long_fct, time_of_day_fct)] %>%  # mean 
+  ggplot(aes(x = weekday_long_fct, y=mean_n_songs, fill = time_of_day_fct)) +
+  geom_bar(stat="identity", show.legend = T) + 
+  labs(x = "", y = "average number of listened songs",
+       title = "My Spotify listening history by weekday and time of day", subtitle = "",
+       fill = "Time of day:") +
+  theme_minimal() +
+  center_title +
+  theme(axis.text.x = element_text(angle = 25)) # rotate x-axis text
+p
+
+# interactive?
+# ggplotly(p, tooltip = "y")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Part B: Popularity prediction using statistical methods (motivated Beginners + Advanced)
+
+## Data: Kaggle Data
+
+### 1. Split data into train / test sub-samples
+
+* Useful for R: https://www.listendata.com/2015/02/splitting-data-into-training-and-test.html
+* Useful for Python: https://www.journaldev.com/45019/split-data-into-training-testing-sets
+
+```{r}
+# subset vars: vars
+vars <- c(
+  "acousticness", "danceability",
+  "duration_ms", "energy", "explicit", "instrumentalness",
+  "liveness", "loudness",
+  "speechiness", "tempo", "popularity"
+)
+
+# split into train/test data: train_index
+set.seed(42)
+train_index <- createDataPartition(spotify_DT$popularity, # dep. variable
+                    p = .67, # % of data that goes to training set
+                    list = F, # create matrix, not a list
+                    times = 1
+                    )
+
+# split: train_DT, test_DT
+train_DT <- spotify_DT[train_index, ..vars]
+test_DT <- spotify_DT[-train_index, ..vars]
+
+# row N
+paste0("N obs. train: ", nrow(train_DT))
+paste0("N obs. test: ", nrow(test_DT))
+```
+
+### 2.  Examine the correlation between the variables (train)
+
+* 7 ways to do it: http://jamesmarquezportfolio.com/correlation_matrices_in_r.html
+
+```{r}
+train_DT %>% 
+  cor() %>% # convert to correlation matrix
+  ggcorrplot(lab = T, digits = 1, lab_size = 3, tl.cex = 8)
+```
+
+
+### 3. First predictions with simple regression models (train)
+
+* Useful: https://analyticsindiamag.com/how-to-code-linear-regression-models-with-r/
+
+```{r, warning=F, message=F, results="asis"}
+# fit / train a linear model
+# note: https://analyticsindiamag.com/how-to-code-linear-regression-models-with-r/
+model_1 <- lm(formula = popularity ~ ., data = train_DT) # fit a model
+
+# reveal model equation
+extract_eq(model_1, wrap = T)
+```
+
+
+```{r, warning=FALSE, message=FALSE, include=F}
+# reveal model
+stargazer(model_1, type = "text", omit = "Constant", ci=T)
+```
+
+
+```{r}
+# alternatively
+modelsummary(models = list("Popularity" = model_1),
+  estimate = c("{estimate}{stars}"),
+  statistic = "conf.int",
+  coef_omit = "Intercept"
+)
+```
+
+### 4. From training to testing – making predictions
+
+```{r}
+# predictions on test data
+test_DT[, predicted_popularity := predict(model_1, test_DT)]
+test_DT[, abs_error := abs(popularity - predicted_popularity)]
+test_DT[, .(popularity, predicted_popularity, abs_error)][1:6]
+
+# RMSE for test data: rmse_test
+rmse_test <- Metrics::rmse(actual = test_DT$popularity, 
+              predicted = test_DT$predicted_popularity) %>% 
+  round(digits = 3)
+paste0("RMSE for test data: ", rmse_test)
+```
+
+
+
+### 5. Apply advanced machine learning algorithms
+
+* Let the student decide…
+
+
