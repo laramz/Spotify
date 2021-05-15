@@ -480,7 +480,9 @@ Afterward, you need to sort the data and can then visualize it in a plot.</p>
 <div class="tipsp python">
 <p>First of all, we have to tell pandas that the column “endTime” is a date. This can be done with the <code>pd.to_datetime()</code> function.
 Afterward, you can group the entries by date with the following command:
-<code>df.groupby(by=df[‘endTime’].dt.date```. You can then, for example, count how many songs you listened to each day or sum up the amount of time you listened to and visualize this with a line plot. With</code>df[‘endTime’].dt.date``` the dt you access the DateTime object, and with .date, you group the data by each date which occurs in the data. But it is also possible to group by day or hour instead of date.
+`<code>df.groupby(by=df[‘endTime’].dt.date</code>.</p>
+<p>You can then, for example, count how many songs you listened to each day or sum up the amount of time you listened to and visualize this with a line plot.
+With `<code>df[‘endTime’].dt.date</code> the dt you access the DateTime object, and with .date, you group the data by each date which occurs in the data. But it is also possible to group by day or hour instead of date.
 Try it out and visualize it in a plot.</p>
 </div>
 <p><img src="splots/personal_streaming.png" width="100%" style="display: block; margin: auto;" /></p>
