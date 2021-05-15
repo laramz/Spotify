@@ -404,7 +404,7 @@ Visit ["The R Graph Gallery"](https://www.r-graph-gallery.com/all-graphs) to fin
 :::: {.tipsp .python data-latex="p"}
 
 
-Visit the ["Seaborn Gallery"] (https://seaborn.pydata.org/examples/index.html#), look for a plot that you could use to visualize an aspect of Spotify data and generate a visualization.
+Visit the ["Seaborn Gallery"](https://seaborn.pydata.org/examples/index.html#), look for a plot that you could use to visualize an aspect of Spotify data and generate a visualization.
 ::::
 
 ## Analyse Personal Spotify Data
