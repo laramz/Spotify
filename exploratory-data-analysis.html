@@ -392,7 +392,7 @@ With folium, you can easily plot a map by running the following two lines:</p>
 m</code></pre>
 <p>Folium requires you to specify each country’s country border coordinates you like to be drawn (i.e., colored, like in our example map). For this, we prepared a JSON file with all that data. Note that this is not a CSV file; hence you can’t use the pandas <code>.read_csv()</code> method. You’ll need to work with two new libraries for importing the data - one for requesting the data from a web server (i.e., Google Drive) and one to parse (i.e., read) the data. Here’s the code:</p>
 <pre><code>import requests
-import JSON
+import json
 
 # request data from a url
 response = requests.get(“https://tinyurl.com/TechAcademy-GeoData”)
