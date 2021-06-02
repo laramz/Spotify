@@ -182,7 +182,8 @@
 </div>
 <div class="tipsp python">
 <p>The sklearn library has a function that you can use to split the data set, correspondingly
-<code>from sklearn.model_selection import train_test_split X_train, X_test, y_train, y_test = train_test_split(df, df.popularity, test_size=0.3)</code></p>
+<pre><code>from sklearn.model_selection import train_test_split 
+X_train, X_test, y_train, y_test = train_test_split(df, df.popularity, test_size=0.3)</code></pre></p>
 </div>
 <div id="examine-the-correlation-between-the-variables-train" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Examine the Correlation Between the Variables (train)</h2>
@@ -210,7 +211,7 @@
 </div>
 <div class="tipsp python">
 <p>For the next step the X_train values need to be reshaped .values.reshape(-1,1). Note: If you use more than one feature, you don’t have to reshape your data.</p>
-<p>Import LinearRegression() from sklear.linear_model and train your model using LinearRegression().fit().</p>
+<p>Import <code>LinearRegression()</code> from <code>sklear.linear_model</code> and train your model using <code>LinearRegression().fit()</code>.</p>
 </div>
 <p>Does your independent variable has a statistically significant impact on popularity? Probably yes, because we selected the variable most correlated with popularity. However, if we stick to this very simplified model, we make a typical mistake: the so-called Omitted Variable Bias (OVB). To put it simply, we neglect (in statistics jargon: “do not control for”) variables that have a significant influence on the dependent variable. One could suspect that other influencing factors also play an important role in estimating a song’s popularity. If we do not include them, the estimate of the effect of, e.g., danceability, is biased and hardly helpful. In our case, this is not a big problem for the time being since we are not interested in causal effects but rather in the best possible prediction. Your statistics professor would almost certainly object to such a model. Nonetheless, with just a single explanatory variable, this model will not necessarily predict the popularity well.</p>
 <p>One possible solution is to include the omitted variables in the model. That is quite practical as the data set already includes these variables. So let’s set up a somewhat more extensive model that includes an additional variable:</p>
@@ -221,7 +222,8 @@
 </div>
 <div class="tipsp python">
 <p>You can now compare your two models, therefore compute for each model the <span class="math inline">\(R^2\)</span> value.</p>
-<p><code>import sklearn.metrics as metrics  r2=metrics.r2_score(y_true, y_pred)</code></p>
+<p><pre><code>import sklearn.metrics as metrics  
+r2=metrics.r2_score(y_true, y_pred)</code></pre></p>
 </div>
 </div>
 <div id="from-training-to-testing-making-predictions" class="section level2" number="5.3">
