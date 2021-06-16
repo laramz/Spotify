@@ -326,7 +326,7 @@ The goal should be to create a map with a hover effect displaying each countryâ€
 :::: {.tips .r data-latex="r"}
 First, load the data set `weekly_charts.csv` and find each country's top song. You could use the familiar {dplyr} verbs for this part. You could also save the resulting data set for plotting.
 
-Then, use {plotly} to create an interactive map. In this case, you need to add `ISO Alpha 3` (three-letter) country codes to the `weekly_charts.csv` data set as the `country` column contains `ISO Alpha 2` (two-letter) country codes. You can load [this CSV file](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv) via URL to merge `ISO Alpha 3` country codes with countries in the `weekly_charts.csv` data set. Then, create a plot using {plotly} as described [here](https://plotly.com/r/choropleth-maps/).
+Then, use {plotly} to create an interactive map. In this case, you need to add `ISO Alpha 3` (three-letter) country codes to the `weekly_charts.csv` data set as the `country` column contains `ISO Alpha 2` (two-letter) country codes. You can load [this CSV file](https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv) via URL to merge `ISO Alpha 3` country codes with countries in the `weekly_charts.csv` data set. Then, create a plot using {plotly} as described [here](https://plotly.com/r/choropleth-maps/).
 ::::
 
 
